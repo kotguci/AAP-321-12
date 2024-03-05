@@ -8,23 +8,25 @@
     <link rel="stylesheet" href="resources/styles/home.css">
     
 </head>
-<body>
-    <div id="header">
-        <img src="https://paw.sr/images/pawsr-blog-banner_1200.jpg">
-    </div>
+<body onload="handleOnLoad()">
+    <div id="app"></div>
+    
     <div id="title">
         <h1>Adopt A Pet</h1>
+        <div id="miniTitle">
+           <p>Pet Adoption Service</p>
+        </div>
     </div>
 
     <div id="top-buttons">
         <button class="btn btn-dark" onclick="window.location.href='browse.html'">Browse Centers</button>
         <button class="btn btn-dark" onclick="window.location.href='adopt.html'">Adopt A Pet</button>
-        <button class="btn btn-dark" onclick="window.location.href='contact.html'">Contact Us</button>
+        <button class="btn btn-dark" onclick="window.location.href='contact.html'">About Us</button>
     </div>
     <div id="sign-in">
         <button class="btn btn-dark" onclick="getMoreData('${pokemon.name}')">Sign In</button>
     </div>
 
-    <link rel="script" href="resources/scripts/home.js">
+    <script src="./resources/scripts/home.js"></script>
 </body>
 </html>
