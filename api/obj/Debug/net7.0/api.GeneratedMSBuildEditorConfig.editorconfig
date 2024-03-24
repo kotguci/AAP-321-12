@@ -9,9 +9,17 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = api
 build_property.RootNamespace = api
+<<<<<<< HEAD
 build_property.ProjectDir = c:\Users\logan\Group_Project\AAP-321-12\api\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = c:\Users\logan\Group_Project\AAP-321-12\api
+=======
+build_property.ProjectDir = /Users/kotrynaguci/Documents/MIS321/321AAP/AAP-321-12/api/
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/kotrynaguci/Documents/MIS321/321AAP/AAP-321-12/api
+>>>>>>> origin
 build_property._RazorSourceGeneratorDebug = 

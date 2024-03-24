@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url("https://static.vecteezy.com/system/resources/previews/025/188/627/non_2x/playful-puppy-and-kitten-sitting-outdoors-enjoying-nature-beauty-generated-by-ai-free-photo.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+h1 {
+    background: crimson; 
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    width: 40%;
+    margin: 0 auto;
+    margin-bottom: 20px; 
+  }
+
+.container {
+    width: 100%;
+    padding: 20px;
+}
+
+input[type=text],
+input[type=password] {
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.261);
+    border-radius: 40px;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 8px auto;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    opacity: 0.9;
+    display: block; 
+}
+
+
+button:hover {
+    opacity: 1;
+}
+
+.cancelbtn {
+    padding: 14px 20px;
+}
+
+.cancelbtn,
+.signupbtn {
+    width: 50%;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+p {
+    background-color: rgba(255, 252, 252, 0.612);
+    color: crimson;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    width: 40%;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 300px) {
+  .cancelbtn,
+  .signupbtn {
+    width: 100%;
+  }
+}
