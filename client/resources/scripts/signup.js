@@ -1,29 +1,33 @@
+let subjectUrl = 'http://localhost:5161/api/accounts'
+
+
 function handleOnLoad(){
     createAccount();
 }
-//W3 schools
+
 function createAccount(){
     let html= `
-    <form id="signup-form" action="action_page.php" style="border:1px solid #ccc">
+    <form id="signup-form" action="home.html" style="border:1px solid #ccc">
     <div class="container">
       <h1>Adopt a Pet Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
       <hr>
         
-        <label for="fName"><b>First Name</b></label>
-        <input type="text" placeholder="Enter First Name" name="fName" required
-        
-        <label for="lName"><b>Last Name</b></label>
-        <input type="text" placeholder="Enter Last Name" name="lName" required>
-
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required>
-    
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-    
-        <label for="psw-repeat"><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+      <label for="firstName"><b>First Name</b></label>
+      <input type="text" id="firstName" placeholder="Enter First Name" name="fName" required>
+      
+      <label for="lastName"><b>Last Name</b></label>
+      <input type="text" id="lastName" placeholder="Enter Last Name" name="lName" required>
+      
+      <label for="email"><b>Email</b></label>
+      <input type="text" id="email" placeholder="Enter Email" name="email" required>
+      
+      <label for="password"><b>Password</b></label>
+      <input type="password" id="password" placeholder="Enter Password" name="psw" required>
+      
+      <label for="passwordRepeat"><b>Repeat Password</b></label>
+      <input type="password" id="passwordRepeat" placeholder="Repeat Password" name="psw-repeat" required>
+      
     
       <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -33,8 +37,8 @@ function createAccount(){
 
   
       <div class="clearfix">
-        <button type="button" class="btn btn-dark cancel-btn" onclick="cancelSignup()">Cancel</button>
-        <button type="submit" class="btn btn-danger signup-btn">Sign Up</button>
+        <button type="button" class="btn btn-dark" onclick="cancelSignup()">Cancel</button>
+        <button type="submit" class="btn btn-danger" onclick="handleNewSignup()">Sign Up</button>
       </div>
     </div>
   </form>
@@ -44,4 +48,27 @@ function createAccount(){
 
 function cancelSignup() {
     window.location.href = "signin.html";
+}
+
+async function handleNewSignup(){
+  alert("test")
+  let signup = {
+    id: crypto.randomUUID(),
+    firstName : document.getElementById("firstName").value,
+    lastName : document.getElementById("lastName").value,
+    email : document.getElementById("email").value,
+    password : document.getElementById("password").value,
+      
+  }
+  await saveSignup(signup)
+  //createTable()
+  }
+
+async function saveSignup(signup){
+  await fetch(subjectUrl, {
+          method: "POST",
+          body: JSON.stringify(signup),
+          headers: {"Content-type": "application/json; charset=UTF-8"}
+  })
+
 }
