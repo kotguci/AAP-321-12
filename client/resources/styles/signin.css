@@ -109,8 +109,26 @@ body {
 .register-link p a:hover {
     text-decoration: underline;
 }
-
-
+.wrapper .worker-signin {
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    font-size: 14.5px;
+    text-align: center;
+    margin-top: 20px;
+   
+    padding: 8px 5px 0 0;
+}
+.worker-signin p a{
+    color: rgb(241, 175, 175);
+    text-decoration: none;
+    font-weight: 600;
+}
+.worker-signin p a:hover {
+    text-decoration: underline;
+}
 
 #button-header {
     display: flex;

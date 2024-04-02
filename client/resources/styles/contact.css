@@ -1,77 +1,34 @@
-*{
+body {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
 }
-
-.app{
+#button-header {
     display: flex;
-    min-height: 100vh;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    height: 50px;
+    background-color: #DC143C;
+    color: #ffffff;
+    padding: 50px;
+    text-align: left;
+    font-weight: normal;
+    overflow: hidden;
+    font-weight: normal;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; 
 }
 
-.sidebar {
-    flex:1 1 0;
-    max-width: 200px;
-    padding: 2rem 1rem;
-    background-color: crimson;
-}
-.sidebar h3{
-    color: white;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    margin-bottom: .5em;
-}
-.sidebar .menu{
-    margin:0 -1rem;
+#top-buttons {
+    position: fixed;
+    margin-left: 10px;
+    margin-top: center;
 }
 
-.sidebar .menu .menu-item{
-    display: block;
-    padding: 1em;
-    color: white;
-    text-decoration: none;
-    transition: 0.2s linear;
-}
-
-.sidebar .menu .menu-item:hover,
-.sidebar .menu .menu-item.is-active {
-    color: rgb(255, 158, 158);
-    border-right: 5px solid rgb(255, 158, 158);
-}
-
-.content {
-    flex: 1 1 0;
-    padding: 2rem;
-}
-
-.content p{
-    color: rgb(255, 255, 255);
-}
-
-@media (max-width: 1024px){
-    .sidebar{
-        max-width: 200px;
-    }
-}
-
-@media (max-width: 768px) {
-    .menu-toggle{
-        display:block;
-    }
-    .content{
-        padding-top: 8rem;
-    }
-    .sidebar{
-        position: flex;
-        top: 0;
-        left: -300px;
-        height: 100vh;
-        width: 100%;
-        max-width: 300px;
-        transition: 0.2s linear;
-    }
-    .sidebar.is-active{
-        left: 0;
-    }
-    
+#sign-in {
+    position: fixed;
+    margin-left: calc(100% - 300px);
+    margin-top: center;
 }

@@ -22,9 +22,12 @@ function signInDisplay() {
             <button type="submit" class="btn btn-danger">Login</button>
 
             <div class="register-link">
-            <p>Don't Have An Account? <a href="signup.html">Register</a></p>
+             <p>Don't Have An Account? <a href="signup.html">Register</a></p>
             </div>
         </form>
+        <div class="worker-signin">
+                <p>Worker Login: <a href="signup.html">Click Here</a></p>
+        </div>
     </div>
     `;
     document.getElementById('app').innerHTML = html;
