@@ -22,17 +22,6 @@ namespace api.Controllers
         [HttpGet]
         
         public List<Pets> Get()
-<<<<<<< HEAD
-        {
-            string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;";
-            MySqlConnection con = new MySqlConnection(cs);
-            con.Open();
-            
-            using var cmd = new MySqlCommand("SELECT test FROM test", con);
-            using MySqlDataReader rdr = cmd.ExecuteReader();
-            List<Pets> myPets = new List<Pets>();
-=======
->>>>>>> refs/remotes/origin/main
 
         {
             GetPet test = new GetPet();
@@ -53,7 +42,7 @@ namespace api.Controllers
                 using MySqlConnection con = new MySqlConnection(cs);
                 con.Open();
                 
-                string query = "INSERT INTO Pet (animalType, image, sex, petId, dateToShelter, summary, breed, age, size, hypoallergenic, aggressive, neuteredSpayed, shelterId, reserved, adopted) VALUES (@AnimalType, @Image, @Sex, @PetId, @DateToShelter, @Summary, @Breed, @Age, @Size, @Hypoallergenic, @Aggressive, @NeuteredSpayed, @ShelterId, @Reserved, @Adopted)";
+                string query = "INSERT INTO Pet (animalType, image, sex, petId, dateToShelter, summary, breed, age, size, hypoallergenic, aggressive, neuteredSpayed, shelterId, reserved, adopted, name) VALUES (@AnimalType, @Image, @Sex, @PetId, @DateToShelter, @Summary, @Breed, @Age, @Size, @Hypoallergenic, @Aggressive, @NeuteredSpayed, @ShelterId, @Reserved, @Adopted, @Name)";
                 
                 using MySqlCommand cmd = new MySqlCommand(query, con);
                 
@@ -72,6 +61,9 @@ namespace api.Controllers
                 cmd.Parameters.AddWithValue("@ShelterId", pet.shelterId);
                 cmd.Parameters.AddWithValue("@Reserved", pet.reserved);
                 cmd.Parameters.AddWithValue("@Adopted", pet.adopted);
+                cmd.Parameters.AddWithValue("@Name", pet.name);
+
+
 
 
                 

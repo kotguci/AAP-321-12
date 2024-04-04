@@ -4,10 +4,6 @@ namespace api.Models
 {
     public class Pets
     {
-<<<<<<< HEAD
-        public string name {get; set;}
-
-=======
         public string animalType {get; set;}
         public string image {get; set;}
         public string sex {get; set;}
@@ -23,6 +19,6 @@ namespace api.Models
         public string shelterId {get; set;}
         public bool reserved{get; set;}
         public bool adopted {get; set;}
->>>>>>> refs/remotes/origin/main
+        public string name {get; set;}
     }
 }

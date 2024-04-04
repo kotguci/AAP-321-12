@@ -19,6 +19,9 @@ function createAccount(){
         <label for="image"><b>Image (Paste Image URL)</b></label>
         <input type="text" id="image" placeholder="Paste Image URL" name="image" required>
 
+        <label for="name"><b>Name</b></label>
+        <input type="text" id="name" placeholder="Enter Name" name="name" required>
+
         <label for="sex"><b>Sex</b></label>
         <select id="sex" name="sex">
         <option value="male">Male</option>
@@ -89,6 +92,7 @@ async function handleNewPet(){
         shelterId: document.getElementById("shelterId").value,
         reserved: false,
         adopted: false,
+        name: document.getElementById("name").value
     }
     console.log(pet)
     await savePet(pet)

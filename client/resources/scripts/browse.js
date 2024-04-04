@@ -1,31 +1,34 @@
-let petUrl = 'http://localhost:5161api/Pets';
-let myPets = []
+let shelterUrl = 'http://localhost:5161/api/Shelters';
+let myShelters = []
 
 
 function handleOnLoad(){
-     getAllPets()
+     
      populateCards()
 }
 
-async function getAllPets(){
-    let response = await fetch(petUrl);
-    movie = await response.json();
-    console.log(pets);
+async function getAllShelters(){
+    let response = await fetch(shelterUrl);
+    myShelters = await response.json();
+    console.log(myShelters);
 }
 
 async function populateCards(){
-    await getAllPets()
+    await getAllShelters()
 
-    let html = `
+    let html = ''
+     myShelters.forEach(function(shelters){
+
+    html += `
         <div class="petCard" style="width: 18rem;">
-        <img class="card-img-top" src=">${pets.image}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">>${pets.petName}</h5>
-            <p class="card-text">Type: ${pets.animalType}\nAge: ${pets.age}     Sex:Breed: ${pets.sex}\nBreed: ${pets.breed}\Size: ${pets.size}\nEntered Shelter: ${pets.dateToShelter}</p>
+                <div class="card-body">
+                 <h5 class="card-title">${shelters.name}</h5>
+                <p class="card-text">City: ${shelters.shelterCity}\nState: ${shelters.shelterState}     Address: ${shelters.shelterAddress}\n</p>
 
             <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+            
         </div>`
-    
+    })
+    console.log(html)
     document.getElementById('app').innerHTML = html;
 }

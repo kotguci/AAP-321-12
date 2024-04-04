@@ -13,7 +13,7 @@ namespace api.Services
             MySqlConnection con = new MySqlConnection(cs);
             con.Open();
             
-            using var cmd = new MySqlCommand("SELECT animalType, image, sex, petId, dateToShelter, summary, breed, age, size, hypoallergenic, aggressive, neuteredSpayed, shelterId, reserved, adopted FROM Pet", con);
+            using var cmd = new MySqlCommand("SELECT animalType, image, sex, petId, dateToShelter, summary, breed, age, size, hypoallergenic, aggressive, neuteredSpayed, shelterId, reserved, adopted, name FROM Pet", con);
             using MySqlDataReader rdr = cmd.ExecuteReader();
             List<Pets> myPets = new List<Pets>();
 
@@ -35,6 +35,7 @@ namespace api.Services
                 shelterId = rdr["shelterId"].ToString(), 
                 reserved = rdr.GetBoolean(rdr.GetOrdinal("reserved")),  
                 adopted = rdr.GetBoolean(rdr.GetOrdinal("adopted")), 
+                name = rdr["name"].ToString(), 
                 });
             }
             return myPets;
