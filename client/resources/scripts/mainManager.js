@@ -1,9 +1,15 @@
 let subjectUrl = "http://localhost:5161/api/Shelters"
-function handleOnLoad(){
+let subjectUrl2 = "http://localhost:5161/api/ManagerAccount"
+let selectedManager = []
+let managerBool = false
+
+
+ function handleOnLoad(){
     createAccount()
+    populateManagerDetails()
 }
 
-function createAccount(){
+async function createAccount(){
     let html= `
     <form   style="border:1px solid #ccc">
     <div class="container">
@@ -21,15 +27,54 @@ function createAccount(){
         <label for="shelterAddress"><b>Shelter Address</b></label>
         <input type="text" id="shelterAddress" placeholder="Enter Shelter Address" name="shelterAddress" required><br><br
         
+        <label for="existingManager"><b>Choose Existing Manager:</b></label>
+        <select id="existingManager" onchange="populateOtherFields()">
+          <option value="">Select Manager</option>
+        </select>
+
+        <label for="managerUsername"><b>Manager Username</b></label>
+        <input type="text" id="managerUsername" placeholder="Enter Manager Username" name="managerUsername" required><br>
+       
+        <label for="managerPassword"><b>Manager Password</b></label>
+        <input type="password" id="managerPassword" placeholder="Enter Manager Password" name="managerPassword" required><br>
+
+        <label for="managerName"><b>Manager Name</b></label>
+        <input type="text" id="managerName" placeholder="Enter Manager Name" name="managerName" required><br>
+
         <label for="managerAccountId"><b>Manager Account ID</b></label>
         <input type="text" id="managerAccountId" placeholder="Enter Manager Account ID" name="managerAccountId" required><br>
 
         <button type="button" class="btn btn-danger" onclick="handleNewShelter()">Submit</button>
+
+        <button onclick="openPopup()">Add New Manager</button>
       </div>
     </div>
   </form>
     `;
     document.getElementById('addPet').innerHTML = html;
+}
+
+function openPopup() {
+  document.getElementById("popupForm").style.display = "block";
+}
+
+// Function to close the pop-up form
+function closePopup() {
+  document.getElementById("popupForm").style.display = "none";
+}
+
+// Function to save the manager details
+async function handleNewManager() {
+  let manager = {
+    loggedIn : false,
+    managerUsername: document.getElementById("newManagerUsername").value,
+    managerPassword: document.getElementById("newManagerPassword").value,
+    managerName: document.getElementById("newManagerName").value,
+    managerAccountId: document.getElementById("newManagerAccountId").value, 
+  }
+  console.log(manager)
+  await saveManager(manager)
+  closePopup();
 }
 
 async function handleNewShelter(){
@@ -44,8 +89,25 @@ async function handleNewShelter(){
     }
     console.log(shelter)
     await saveShelter(shelter)
-    //createTable()
-    }
+}
+  
+  
+    
+      async function saveManager(manager){
+    
+        await fetch(subjectUrl2, {
+                method: "POST",
+                body: JSON.stringify(manager),
+                headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+      
+      }
+
+  async function getMainManagers(){
+    let response = await fetch(subjectUrl2);
+    myMainManagers = await response.json();
+    console.log(myMainManagers);
+  }
   
   async function saveShelter(shelter){
     
@@ -56,3 +118,34 @@ async function handleNewShelter(){
     })
   
   }
+
+  async function populateManagerDetails() {
+    managerBool = true
+    await getMainManagers()
+    var existingManagerSelect = document.getElementById('existingManager');
+
+    // Clear existing options except the default one
+    existingManagerSelect.innerHTML = '<option value="">Select Manager</option>';
+
+    // Populate dropdown with existing managers
+    myMainManagers.forEach(function(manager) {
+        var option = document.createElement('option');
+        option.value = manager.managerAccountId; // Assuming managerAccountId is the unique ID for each manager
+        option.textContent = manager.managerName;
+        existingManagerSelect.appendChild(option);
+    });
+}
+
+function populateOtherFields() {
+  const selectedId = document.getElementById("existingManager").value;
+  console.log(selectedId)
+    myMainManagers.forEach((manager)=>{
+        if(manager.managerAccountId == selectedId){
+            selectedManager = manager 
+        }
+    });
+  document.getElementById('managerUsername').value = selectedManager.managerUsername;
+  document.getElementById('managerPassword').value = selectedManager.managerPassword;
+  document.getElementById('managerName').value = selectedManager.managerName;
+  document.getElementById('managerAccountId').value = selectedManager.managerAccountId;
+}
