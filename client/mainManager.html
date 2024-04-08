@@ -13,8 +13,27 @@
             <div class="col-md-4">      
             </div>
             <div class="col-md-4">
-                <h1 class="text-center">Add Pet</h1><br>
+                <h1 class="text-center">Add Shelter</h1><br>
                 <div id="addPet"></div>
+                <div id="popupForm" class="popup">
+                    <form class="popup-content">
+                      <h2>Add New Manager</h2>
+                      <label for="managerName">Manager Name:</label>
+                      <input type="text" id="newManagerName" name="managerName" required><br>
+                  
+                      <label for="managerUsername">Manager Username:</label>
+                      <input type="text" id="newManagerUsername" name="managerUsername" required><br>
+                  
+                      <label for="managerPassword">Manager Password:</label>
+                      <input type="password" id="newManagerPassword" name="managerPassword" required><br>
+                  
+                      <label for="managerAccountId">Manager Account ID:</label>
+                      <input type="text" id="newManagerAccountId" name="managerAccountId" required><br>
+                  
+                      <button type="button" onclick="handleNewManager()">Submit</button>
+                      <button type="button" onclick="closePopup()">Cancel</button>
+                    </form>
+                  </div>
             </div>
             <div class="col-md-4">
 
