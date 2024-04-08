@@ -20,8 +20,8 @@ async function populateCards(){
      myShelters.forEach(function(shelters){
 
     html += `
-        <div class="petCard" style="width: 18rem;">
-                <div class="card-body">
+        <div class="card-container">
+                <div class="card">
                  <h5 class="card-title">${shelters.name}</h5>
                 <p class="card-text">City: ${shelters.shelterCity}\nState: ${shelters.shelterState}     Address: ${shelters.shelterAddress}\n</p>
 
