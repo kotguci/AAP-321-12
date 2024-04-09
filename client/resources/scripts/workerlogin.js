@@ -6,7 +6,7 @@ function signInDisplay() {
     let html = `
     <div class="wrapper">
         <form action="">
-            <h1>Adopt a Pet Login</h1>
+            <h1>Employee Login</h1>
             <div class="input-box">
                 <input type="text" placeholder="Username" required>
                 <box-icon type='solid' name='user'></box-icon>
@@ -20,18 +20,8 @@ function signInDisplay() {
             </div>
 
             <button type="submit" class="btn btn-danger">Login</button>
-
-            <div class="register-link">
-             <p>Don't Have An Account? <a href="signup.html">Register</a></p>
-            </div>
         </form>
-        <div class="worker-signin">
-                <p>Worker Login: <a href="workerlogin.html">Click Here</a></p>
-        </div>
     </div>
     `;
     document.getElementById('app').innerHTML = html;
 }
-
-
-
