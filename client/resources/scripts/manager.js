@@ -1,6 +1,8 @@
 let subjectUrl = "http://localhost:5161/api/Pets"
+let shelterUrl = "http://localhost:5161/api/Shelters"
 function handleOnLoad(){
     createAccount()
+    populateshelterDetails()
 }
 
 function createAccount(){
@@ -56,9 +58,10 @@ function createAccount(){
         <label for="neuteredSpayed"><b>Neutered/Spayed</b></label>
         <input type="checkbox" id="neuteredSpayed" name="neuteredSpayed">
 
-        <label for="shelterId"><b>Shelter ID</b></label>
-        <input type="text" id="shelterId" placeholder="Enter Shelter ID" name="shelterId" required>
-
+        <label for="shelterId"><b>Choose Shelter:</b></label>
+        <select id="shelterId">
+          <option value="">Select Shelter</option>
+        </select>
        
 
   
@@ -94,7 +97,6 @@ async function handleNewPet(){
         adopted: false,
         name: document.getElementById("name").value
     }
-    console.log(pet)
     await savePet(pet)
     //createTable()
     }
@@ -108,3 +110,33 @@ async function handleNewPet(){
     })
   
   }
+  async function getShelters(){
+    let response = await fetch(shelterUrl);
+    myShelters = await response.json();
+    console.log(myShelters);
+  }
+
+  async function populateshelterDetails() {
+    url = JSON.parse(localStorage.getItem('accountId'));
+    console.log(url)
+    await getShelters()
+    var existingManagerSelect = document.getElementById('shelterId');
+
+    // Clear existing options except the default one
+    existingManagerSelect.innerHTML = '<option value="">Select Shelter</option>';
+
+    // Populate dropdown with existing managers
+    myShelters.forEach(function(shelter) {
+      if(url === shelter.managerAccountId){
+        var option = document.createElement('option');
+        option.value = shelter.shelterId; // Assuming managerAccountId is the unique ID for each manager
+        option.textContent = shelter.name;
+        existingManagerSelect.appendChild(option);
+        console.log(shelter.shelterId)
+      }
+    });
+}
+
+
+
+

@@ -1,9 +1,57 @@
+let subjectUrl2 = "http://localhost:5161/api/ManagerAccount"
+let myMainManagers = []
+url = JSON.parse(localStorage.getItem('accountId'));
+console.log(url)
+let managerBool = false
 
 async function handleOnLoad() {
+    await getMainManagers()
+    await managerDecision()
     await slideShow();
     showSlides();
  }
  
+function managerDecision(){
+    myMainManagers.forEach(function(manager){
+        if(url === manager.managerAccountId){
+            managerBool = true
+            console.log(managerBool)
+        }
+    })
+    if(managerBool === true){
+        managerHeadingBar()
+    }else{
+        headingBar();
+    }
+}
+
+ function handleNewPage()
+  {
+       
+        let tempId = {
+          
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value,
+        }
+        console.log(tempId)
+        
+        myMainManagers.forEach(function(manager){
+            if(tempId.username === manager.managerUsername){
+                if(tempId.password === manager.managerPassword){
+                    localStorage.setItem('accountId', JSON.stringify(manager.managerAccountId))
+                    window.location.href = 'home.html'
+                }
+            }
+        })
+}
+
+async function getMainManagers(){
+    let response = await fetch(subjectUrl2);
+    myMainManagers = await response.json();
+    console.log(myMainManagers);
+  }
+
+
 let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -78,3 +126,32 @@ function showSlides(n) {
      showSlides(slideIndex = n);
  }
  
+ function headingBar(){
+    let html =`
+    <div id="button-header">
+        <div id="top-buttons">
+            <button class="btn btn-light" onclick="window.location.href='browse.html'">Browse Centers</button>
+            <button class="btn btn-light" onclick="window.location.href='adopt.html'">Adopt A Pet</button>
+            <button class="btn btn-light" onclick="window.location.href='contact.html'">About Us</button>
+        </div>
+        <div id="sign-in">
+            <button class="btn btn-dark" onclick="window.location.href='signin.html'"">Sign In</button>
+        </div>
+    </div>`
+    document.getElementById('app2').innerHTML = html;
+}
+
+function managerHeadingBar(){
+    let html =`
+    <div id="button-header">
+        <div id="top-buttons">
+            <button class="btn btn-light" onclick="window.location.href='browse.html'">Browse Centers</button>
+            <button class="btn btn-light" onclick="window.location.href='adopt.html'">Adopt A Pet</button>
+            <button class="btn btn-light" onclick="window.location.href='contact.html'">About Us</button>
+        </div>
+        <div id="sign-in">
+            <button class="btn btn-dark" onclick="window.location.href='manager.html'"">Manager Functions</button>
+        </div>
+    </div>`
+    document.getElementById('app2').innerHTML = html;
+}
