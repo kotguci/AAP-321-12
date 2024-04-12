@@ -15,7 +15,30 @@ namespace api.Controllers
     {
         // GET: api/Accounts
         [HttpGet]
-        
+        public List<Signups> Get()
+        {
+            string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
+            MySqlConnection con = new MySqlConnection(cs);
+            con.Open();
+            
+            using var cmd = new MySqlCommand("SELECT firstName, lastName, email, userPassword, userId, loggedIn FROM UserAccount", con);
+            using MySqlDataReader rdr = cmd.ExecuteReader();
+            List<Signups> mySignups = new List<Signups>();
+
+            while (rdr.Read()){
+                mySignups.Add(new Signups()
+                {
+                firstName = rdr["firstName"].ToString(),
+                lastName = rdr["lastName"].ToString(),
+                email = rdr["email"].ToString(),
+                password = rdr["userPassword"].ToString(),
+                id= rdr["userId"].ToString(),
+
+                
+                });
+            }
+            return mySignups;
+        }
 
         // GET: api/Accounts/5
         [HttpGet("{id}", Name = "Get")]
