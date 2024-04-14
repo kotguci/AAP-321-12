@@ -137,6 +137,9 @@ async function handleNewPet(){
     });
 }
 
+function handleSignOut(){
+  localStorage.removeItem('accountId')
+}
 
 
 

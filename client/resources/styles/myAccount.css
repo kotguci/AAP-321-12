@@ -1,33 +1,4 @@
 body {
-    background-size: cover;
-    background-position: center;
-  }
-  
-  
-  
-  .container {
-      width: 100%;
-      padding: 20px;
-  }
-  
-  input[type=text],
-input[type=password] {
-    border: none;
-    outline: none;
-    border: 2px solid rgba(255, 255, 255, 0.261);
-    width: 100%;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-}
-
-input[type=text]:focus,
-input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-}
-
-
-body {
     margin: 0;
     background-color: rgb(255, 255, 255);
 }

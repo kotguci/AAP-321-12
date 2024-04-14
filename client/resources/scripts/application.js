@@ -74,7 +74,8 @@ async function handleNewApplication(){
         rent: document.getElementById("rent").checked ? true : false,
         pastPets: document.getElementById("pastPets").value,
         userId: "2c6d0905-d31c-4c9f-a02d-dd5be342da47",
-        shelterId: document.getElementById("shelterId").value
+        shelterId: document.getElementById("shelterId").value,
+        approved : false
 
     }
     console.log(application)

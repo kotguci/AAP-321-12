@@ -16,8 +16,9 @@ async function getAllShelters(){
 async function populateCards(){
     await getAllShelters()
 
+
     let html = ''
-     myShelters.forEach(function(shelters){
+    myShelters.forEach(function(shelters){
 
     html += `
         <div class="card-container">
@@ -25,10 +26,15 @@ async function populateCards(){
                  <h5 class="card-title">${shelters.name}</h5>
                 <p class="card-text">City: ${shelters.shelterCity}\nState: ${shelters.shelterState}     Address: ${shelters.shelterAddress}\n</p>
 
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+                <button type="button" class="btn btn-dark" onclick="handleShelter(${shelters.shelterId})">Choose Shelter</button>
             
         </div>`
     })
-    console.log(html)
     document.getElementById('app').innerHTML = html;
+}
+
+function handleShelter(shelterId){
+    localStorage.setItem('shelterId', JSON.stringify(shelterId))
+    window.location.href = 'adopt.html'
+   
 }

@@ -1,55 +1,63 @@
 let subjectUrl2 = "http://localhost:5161/api/ManagerAccount"
 let myMainManagers = []
+subjectUrl = "http://localhost:5161/api/Accounts"
+let myAccounts = []
 url = JSON.parse(localStorage.getItem('accountId'));
 console.log(url)
-let managerBool = false
+
 
 async function handleOnLoad() {
     await getMainManagers()
+    await getAccounts()
     await managerDecision()
     await slideShow();
     showSlides();
  }
  
-function managerDecision(){
-    myMainManagers.forEach(function(manager){
-        if(url === manager.managerAccountId){
-            managerBool = true
-            console.log(managerBool)
-        }
-    })
-    if(managerBool === true){
-        managerHeadingBar()
-    }else{
+ function managerDecision() {
+    // Declare and initialize boolean flags
+    let managerBool = myMainManagers.some(manager => url === manager.managerAccountId);
+    let userBool = myAccounts.some(account => url === account.id);
+
+    // Log the boolean flags
+    console.log("managerBool:", managerBool);
+    console.log("userBool:", userBool);
+
+    // Decision logic for manager
+    if (managerBool) {
+        managerHeadingBar();
+    } else if (userBool) {
+        signedInHeadingBar();
+    } else {
         headingBar();
     }
 }
 
- function handleNewPage()
-  {
-       
-        let tempId = {
-          
-            username: document.getElementById("username").value,
-            password: document.getElementById("password").value,
-        }
-        console.log(tempId)
-        
-        myMainManagers.forEach(function(manager){
-            if(tempId.username === manager.managerUsername){
-                if(tempId.password === manager.managerPassword){
-                    localStorage.setItem('accountId', JSON.stringify(manager.managerAccountId))
-                    window.location.href = 'home.html'
-                }
-            }
-        })
-}
+
+
 
 async function getMainManagers(){
     let response = await fetch(subjectUrl2);
     myMainManagers = await response.json();
     console.log(myMainManagers);
   }
+
+
+  async function getAccounts(){
+    let response = await fetch(subjectUrl);
+    myAccounts = await response.json();
+    console.log(myAccounts);
+  }
+
+
+
+
+
+
+
+
+
+
 
 
 let slideIndex = 1;
@@ -151,6 +159,21 @@ function managerHeadingBar(){
         </div>
         <div id="sign-in">
             <button class="btn btn-dark" onclick="window.location.href='manager.html'"">Manager Functions</button>
+        </div>
+    </div>`
+    document.getElementById('app2').innerHTML = html;
+}
+
+function signedInHeadingBar(){
+    let html =`
+    <div id="button-header">
+        <div id="top-buttons">
+            <button class="btn btn-light" onclick="window.location.href='browse.html'">Browse Centers</button>
+            <button class="btn btn-light" onclick="window.location.href='adopt.html'">Adopt A Pet</button>
+            <button class="btn btn-light" onclick="window.location.href='contact.html'">About Us</button>
+        </div>
+        <div id="sign-in">
+            <button class="btn btn-dark" onclick="window.location.href='myAccount.html'"">My Account</button>
         </div>
     </div>`
     document.getElementById('app2').innerHTML = html;
