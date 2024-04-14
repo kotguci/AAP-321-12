@@ -42,20 +42,20 @@ body {
 
 .petCardContainer {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 30px; 
-    align-items: center;
     justify-content: center; 
 }
 
 .petCard {
-    width: 18rem; 
+    width: calc(33.33% - 20px);
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     border-radius: 15px; 
     overflow: hidden; 
 }
+
 
 .petCard p {
     margin-left: 10px;

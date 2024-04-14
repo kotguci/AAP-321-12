@@ -34,3 +34,37 @@ body {
     margin-left: calc(100% - 300px);
     margin-top: center;
 }
+
+
+.locationCardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; 
+    justify-content: center;
+}
+
+.locationCard {
+    width: calc(33.33% - 20px);
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 15px; 
+    overflow: hidden; 
+}
+
+.locationCard p {
+    margin-left: 10px;
+}
+
+.locationCard h5{
+    margin-left: 10px;
+}
+
+.card-body .btn {
+    margin-top: auto; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 50px; 
+    width: 100%;
+}
