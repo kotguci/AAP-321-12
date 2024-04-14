@@ -39,6 +39,25 @@ async function populateCards(){
                 </div>
                 </div>`
             
+        }else if (url == null){
+            html += `
+            <div class="petCardContainer"> 
+            <div class="petCard" style="width: 18rem;">
+            <img class="card-img-top" src="${pets.image}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">${pets.name}</h5>
+                <p class="card-text">
+                    Type: ${pets.animalType}<br>
+                    Age: ${pets.age}<br>
+                    Sex: ${pets.sex}<br>
+                    Breed: ${pets.breed}<br>
+                    Size: ${pets.size}<br>
+                    Entered Shelter: ${pets.dateToShelter}
+                </p>
+                <button onclick="showPopup(${pets.petId})" class="btn btn-danger">More About ${pets.name}</button>
+                </div>
+                </div>
+                </div>`
         }
         
     })
