@@ -15,6 +15,7 @@ async function getAllPets(){
 
 async function populateCards(){
     await getAllPets()
+<<<<<<< HEAD
     url = JSON.parse(localStorage.getItem('shelterId'));
     console.log(url)
     let html = ''
@@ -61,6 +62,30 @@ async function populateCards(){
         }
         
     })
+=======
+
+    let html = '<div class="petCardContainer">';
+    myPets.forEach(function(pets){
+        html += `
+            <div class="petCard" style="width: 18rem;">
+                <img class="card-img-top" src="${pets.image}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">${pets.name}</h5>
+                    <p class="card-text">
+                        Type: ${pets.animalType}<br>
+                        Age: ${pets.age}<br>
+                        Sex: ${pets.sex}<br>
+                        Breed: ${pets.breed}<br>
+                        Size: ${pets.size}<br>
+                        Entered Shelter: ${pets.dateToShelter}
+                    </p>
+                    <a href="#" class="btn btn-danger">More About ${pets.name}</a>
+                </div>
+            </div>`;
+    });
+    html += '</div>';
+    console.log();
+>>>>>>> refs/remotes/origin/main
     document.getElementById('app').innerHTML = html;
 }
 

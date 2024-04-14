@@ -80,3 +80,30 @@ body {
 .button:hover {
     background-color: #9c0d29;
 }
+
+#popup-window {
+    position: fixed;
+    width: 300px;
+    height: auto;
+    max-height: 80%; 
+    background: white;
+    border: 1px solid black;
+    padding: 20px;
+    margin: auto;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 1000; 
+    display: none;
+    overflow-y: auto; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+#popup-window h1{
+    font-size: 20px;
+}
+
+#close-button {
+    display: block;
+    margin: 0 auto;
+}
