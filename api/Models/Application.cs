@@ -17,6 +17,7 @@ namespace api.Models
         public string userId { get; set; }
         public string shelterId { get; set; }
         public bool approved {get; set;}
+        public string petId {get; set;}
 
     }
 }

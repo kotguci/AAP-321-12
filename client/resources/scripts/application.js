@@ -38,11 +38,6 @@ function createApplication(){
 
         <label for="pastPets"><b>Past Pets</b></label>
         <input type="text" id="pastPets" placeholder="Enter Past Pets" name="pastPets" required><br><br>
-
-    
-        <label for="shelterId"><b>Shelter ID</b></label>
-        <input type="text" id="shelterId" placeholder="Enter Shelter ID" name="shelterId" required><br><br>
-
   
       <p>By creating an account you agree to our <a href="terms.html" target="_blank" style="color: black">Terms & Privacy</a>.</p>
 
@@ -59,9 +54,12 @@ function createApplication(){
 // local storage for userId to keep track
 
 async function handleNewApplication(){
-    alert("test")
+    url = JSON.parse(localStorage.getItem('petId'));
+    url2 = JSON.parse(localStorage.getItem('shelterId'))
+    url3 = JSON.parse(localStorage.getItem('accountId'))
+    console.log(url)
+
     let application = {
-        applicationId: crypto.randomUUID(),
         firstName: document.getElementById("firstName").value,
         lastName: document.getElementById("lastName").value,
         address: document.getElementById("address").value,
@@ -71,20 +69,21 @@ async function handleNewApplication(){
         phone: document.getElementById("phone").value,
         email: document.getElementById("email").value,
         house: document.getElementById("house").checked ? true : false,
+        applicationId: crypto.randomUUID(),
         rent: document.getElementById("rent").checked ? true : false,
         pastPets: document.getElementById("pastPets").value,
-        userId: "2c6d0905-d31c-4c9f-a02d-dd5be342da47",
-        shelterId: document.getElementById("shelterId").value,
-        approved : false
+        userId: url3,
+        shelterId: url2,
+        approved : false,
+        petId : url
 
     }
-    console.log(application)
     await saveApplication(application)
     //createTable()
     }
   
   async function saveApplication(application){
-    
+      console.log(application)
     await fetch(subjectUrl, {
             method: "POST",
             body: JSON.stringify(application),

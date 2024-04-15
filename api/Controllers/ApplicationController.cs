@@ -34,7 +34,7 @@ namespace api.Controllers
                 using MySqlConnection con = new MySqlConnection(cs);
                 con.Open();
                 
-                string query = "INSERT INTO Application (firstName, lastName, address, city, state, zipCode, phone, email, house, applicationId, rent, pastPets, userId, shelterId, approved) VALUES (@FirstName,@LastName, @Address, @City, @State, @ZipCode, @Phone, @Email, @House, @ApplicationId, @Rent, @PastPets, @UserId, @ShelterId, @Approved)";
+                string query = "INSERT INTO Application (firstName, lastName, address, city, state, zipCode, phone, email, house, applicationId, rent, pastPets, userId, shelterId, approved, petId) VALUES (@FirstName,@LastName, @Address, @City, @State, @ZipCode, @Phone, @Email, @House, @ApplicationId, @Rent, @PastPets, @UserId, @ShelterId, @Approved, @PetId)";
                 
                 using MySqlCommand cmd = new MySqlCommand(query, con);
                 
@@ -54,6 +54,8 @@ namespace api.Controllers
                 cmd.Parameters.AddWithValue("@UserId", application.userId);
                 cmd.Parameters.AddWithValue("@ShelterId", application.shelterId);
                 cmd.Parameters.AddWithValue("@Approved", application.approved);
+                cmd.Parameters.AddWithValue("@PetId", application.petId);
+
 
                 
                 // Execute the command
