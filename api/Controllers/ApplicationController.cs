@@ -17,9 +17,42 @@ namespace api.Controllers
     {
         // GET: api/Application
         [HttpGet]
-        public IEnumerable<string> Get()
+
+
+        public List<Application> Get()
         {
-            return new string[] { "value1", "value2" };
+            string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
+            MySqlConnection con = new MySqlConnection(cs);
+            con.Open();
+            
+            using var cmd = new MySqlCommand("SELECT firstName, lastName, address, city, state, zipCode, phone, email, house, applicationId, rent, pastPets, userId, shelterId, approved, petId FROM Application", con);
+            using MySqlDataReader rdr = cmd.ExecuteReader();
+            List<Application> myApplications = new List<Application>();
+
+            while (rdr.Read()){
+                myApplications.Add(new Application()
+                {
+                    firstName = rdr["firstName"].ToString(),
+                    lastName = rdr["lastName"].ToString(),
+                    address = rdr["address"].ToString(),
+                    city = rdr["city"].ToString(),
+                    state = rdr["state"].ToString(),
+                    zipCode = rdr["zipCode"].ToString(),
+                    phone = rdr["phone"].ToString(),
+                    email = rdr["email"].ToString(),
+                    house = Convert.ToBoolean(rdr["house"]),
+                    applicationId = rdr["applicationId"].ToString(),
+                    rent = Convert.ToBoolean(rdr["rent"]),
+                    pastPets = rdr["pastPets"].ToString(),
+                    userId = rdr["userId"].ToString(),
+                    shelterId = rdr["shelterId"].ToString(),
+                    approved = Convert.ToBoolean(rdr["approved"]),
+                    petId = rdr["petId"].ToString()
+
+                
+                });
+            }
+            return myApplications;
         }
 
         // GET: api/Application/5

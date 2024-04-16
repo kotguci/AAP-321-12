@@ -20,9 +20,7 @@ function signInDisplay() {
                 <input type="password" id="password"placeholder="Password" required>
                 <box-icon name='lock-alt' type='solid'></box-icon>
             </div>
-            <div class="remember-forgot">
-                <label><input type="checkbox">Remember Me</label>
-            </div>
+         
 
             <button type="submit" class="btn btn-danger"onclick="handleNewPage()">Login</button>
 

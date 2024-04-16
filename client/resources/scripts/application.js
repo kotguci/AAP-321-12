@@ -1,6 +1,11 @@
 let subjectUrl = "http://localhost:5161/api/Application"
 function handleOnLoad(){
-    createApplication()
+  url3 = JSON.parse(localStorage.getItem('accountId'))
+  if (url3 != null){
+      createApplication()
+  }else{
+    window.location.href = 'signin.html'
+  }
 }
 
 function createApplication(){
@@ -80,6 +85,8 @@ async function handleNewApplication(){
     }
     await saveApplication(application)
     //createTable()
+    window.location.href = 'myAccount.html'
+
     }
   
   async function saveApplication(application){

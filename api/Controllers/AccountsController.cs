@@ -21,7 +21,7 @@ namespace api.Controllers
             MySqlConnection con = new MySqlConnection(cs);
             con.Open();
             
-            using var cmd = new MySqlCommand("SELECT firstName, lastName, email, userPassword, userId, loggedIn FROM UserAccount", con);
+            using var cmd = new MySqlCommand("SELECT firstName, lastName, email, userPassword, userId FROM UserAccount", con);
             using MySqlDataReader rdr = cmd.ExecuteReader();
             List<Signups> mySignups = new List<Signups>();
 

@@ -23,7 +23,7 @@ async function populateCards(){
             html += `
             <div class="petCardContainer"> 
             <div class="petCard" style="width: 18rem;">
-            <img class="card-img-top" src="${pets.image}" alt="Card image cap">
+            <img class="card-img-top" src="${pets.image}">
             <div class="card-body">
                 <h5 class="card-title">${pets.name}</h5>
                 <p class="card-text">
@@ -45,7 +45,7 @@ async function populateCards(){
             html += `
             <div class="petCardContainer"> 
             <div class="petCard" style="width: 18rem;">
-            <img class="card-img-top" src="${pets.image}" alt="Card image cap">
+            <img class="card-img-top" src="${pets.image}" ">
             <div class="card-body">
                 <h5 class="card-title">${pets.name}</h5>
                 <p class="card-text">

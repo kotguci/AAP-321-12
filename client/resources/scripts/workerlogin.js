@@ -39,7 +39,6 @@ function handleNewPage()
             username: document.getElementById("username").value,
             password: document.getElementById("password").value,
         }
-        console.log(tempId)
         
         myMainManagers.forEach(function(manager){
             if(tempId.username === manager.managerUsername){
@@ -59,7 +58,6 @@ function handleNewPage()
 async function getMainManagers(){
     let response = await fetch(subjectUrl2);
     myMainManagers = await response.json();
-    console.log(myMainManagers);
   }
 
 

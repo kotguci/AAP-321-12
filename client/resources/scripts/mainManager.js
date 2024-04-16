@@ -70,7 +70,8 @@ async function handleNewManager() {
     managerUsername: document.getElementById("newManagerUsername").value,
     managerPassword: document.getElementById("newManagerPassword").value,
     managerName: document.getElementById("newManagerName").value,
-    managerAccountId: document.getElementById("newManagerAccountId").value,
+    managerAccountId: crypto.randomUUID(),
+    
      
   }
   console.log(manager)

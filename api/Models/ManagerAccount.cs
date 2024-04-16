@@ -10,6 +10,6 @@ namespace api.Models
         public string managerAccountId{get; set;}
         public bool loggedIn {get; set;}
 
-        public string shelterId{get;set;}
+  
     }
 }

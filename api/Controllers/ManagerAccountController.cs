@@ -22,7 +22,7 @@ namespace api.Controllers
             MySqlConnection con = new MySqlConnection(cs);
             con.Open();
             
-            using var cmd = new MySqlCommand("SELECT managerPassword, managerUsername, managerName, managerAccountId, loggedIn, shelterId FROM ManagerAccount", con);
+            using var cmd = new MySqlCommand("SELECT managerPassword, managerUsername, managerName, managerAccountId, loggedIn FROM ManagerAccount", con);
             using MySqlDataReader rdr = cmd.ExecuteReader();
             List<ManagerAccount> myManagerAccounts = new List<ManagerAccount>();
 
@@ -34,7 +34,6 @@ namespace api.Controllers
                 managerName = rdr["managerName"].ToString(),
                 managerAccountId = rdr["managerAccountId"].ToString(),
                 loggedIn = rdr.GetBoolean(rdr.GetOrdinal("loggedIn")), 
-                shelterId = rdr["managerPassword"].ToString(),
 
                 
                 });
@@ -54,7 +53,7 @@ namespace api.Controllers
                 using MySqlConnection con = new MySqlConnection(cs);
                 con.Open();
                 
-                string query = "INSERT INTO ManagerAccount (managerPassword, managerUsername, managerName, managerAccountId, loggedIn, shelterId) VALUES (@ManagerPassword, @ManagerUsername, @ManagerName, @ManagerAccountId, @LoggedIn, @ShelterId)";
+                string query = "INSERT INTO ManagerAccount (managerPassword, managerUsername, managerName, managerAccountId, loggedIn) VALUES (@ManagerPassword, @ManagerUsername, @ManagerName, @ManagerAccountId, @LoggedIn)";
                 
                 using MySqlCommand cmd = new MySqlCommand(query, con);
                 
@@ -64,7 +63,6 @@ namespace api.Controllers
                 cmd.Parameters.AddWithValue("@ManagerName", managerAccounts.managerName);
                 cmd.Parameters.AddWithValue("@ManagerAccountId", managerAccounts.managerAccountId);
                 cmd.Parameters.AddWithValue("@LoggedIn", managerAccounts.loggedIn);
-                cmd.Parameters.AddWithValue("@ShelterId", managerAccounts.shelterId);
 
                 // Execute the command
                 cmd.ExecuteNonQuery();
