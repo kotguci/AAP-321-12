@@ -63,25 +63,30 @@ async function populateCards(){
         }
         
     })
-    document.getElementById('app').innerHTML = html;
+    document.getElementById('app').innerHTML = html
 }
 
-// function showPopup(petId) {
-//    const pet = myPets.find(p => p.petId === petId);
-//    html = `
-   
-//        <strong>Type:</strong> ${pet.animalType}<br>
-//        <strong>Age:</strong> ${pet.age}<br>
-//        <strong>Sex:</strong> ${pet.sex}<br>
-//        <strong>Breed:</strong> ${pet.breed}<br>
-//        <strong>Size:</strong> ${pet.size}<br>
-//        <strong>Entered Shelter:</strong> ${pet.dateToShelter}
-//    `
-//    document.getElementById('petInfoPopup').innerHTML = html;
-// }
+function showPopup(petId) {
+    const pet = myPets.find(p => p.petId === petId)
+    const html = `
+        <strong>Type:</strong> ${pet.animalType}<br>
+        <strong>Age:</strong> ${pet.age}<br>
+        <strong>Sex:</strong> ${pet.sex}<br>
+        <strong>Breed:</strong> ${pet.breed}<br>
+        <strong>Size:</strong> ${pet.size}<br>
+        <strong>Entered Shelter:</strong> ${pet.dateToShelter}
+        <button id="closePopupButton" class="btn btn-danger">Close</button>
+    `;
+    document.getElementById('petInfoPopup').innerHTML = html
+    document.getElementById('petInfoPopup').style.display = 'block'
+    document.getElementById('closePopupButton').addEventListener('click', hidePopup)
+}
 
 function hidePopup() {
-    document.getElementById('petInfoPopup').style.display = 'none';
+    document.getElementById('petInfoPopup').style.display = 'none'
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('closePopupButton').addEventListener('click', hidePopup)
+    })
 }
 
 function adoptPet(petId){

@@ -10,19 +10,10 @@ function contactStetson() {
             LinkedIn: <br>
             </p>
             <button id="close-button" class="btn btn-danger">Close</button>
-        </div>  
+    </div>  
     `
-    // Append the pop-up window HTML to the document body
     document.body.insertAdjacentHTML('beforeend', html)
-
-    // Get the close button element
-    var closeButton = document.getElementById("close-button")
-
-    // Hide the pop-up window when the close button is clicked
-    closeButton.addEventListener("click", function() {
-        var popupWindow = document.getElementById("popup-window")
-        popupWindow.style.display = "none"
-    })
+    document.getElementById('close-button').addEventListener('click', hidePopup)
 }
 
 function contactRebeca() {
@@ -35,16 +26,10 @@ function contactRebeca() {
         LinkedIn: <br>
         </p>
         <button id="close-button" class="btn btn-danger">Close</button>
-    </div>  
-    `
-    document.body.insertAdjacentHTML('beforeend', html)
-
-    var closeButton = document.getElementById("close-button")
-
-    closeButton.addEventListener("click", function() {
-        var popupWindow = document.getElementById("popup-window")
-        popupWindow.style.display = "none"
-    })
+        </div>  
+        `
+        document.body.insertAdjacentHTML('beforeend', html)
+        document.getElementById('close-button').addEventListener('click', hidePopup)
 }
 
 function contactLogan() {
@@ -60,13 +45,7 @@ function contactLogan() {
     </div>  
     `
     document.body.insertAdjacentHTML('beforeend', html)
-
-    var closeButton = document.getElementById("close-button")
-
-    closeButton.addEventListener("click", function() {
-        var popupWindow = document.getElementById("popup-window")
-        popupWindow.style.display = "none"
-    })
+    document.getElementById('close-button').addEventListener('click', hidePopup)
 }
 
 function contactKotryna() {
@@ -79,17 +58,12 @@ function contactKotryna() {
         LinkedIn: <br>
         </p>
         <button id="close-button" class="btn btn-danger">Close</button>
-    </div>  
-    `
-    document.body.insertAdjacentHTML('beforeend', html)
-
-    var closeButton = document.getElementById("close-button")
-
-    closeButton.addEventListener("click", function() {
-        var popupWindow = document.getElementById("popup-window")
-        popupWindow.style.display = "none"
-    })
+        </div>  
+        `
+        document.body.insertAdjacentHTML('beforeend', html)
+        document.getElementById('close-button').addEventListener('click', hidePopup)
 }
+
 function contactAbby() {
     let html = `
     <div id="popup-window" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid black;">
@@ -103,13 +77,7 @@ function contactAbby() {
     </div>  
     `
     document.body.insertAdjacentHTML('beforeend', html)
-
-    var closeButton = document.getElementById("close-button")
-
-    closeButton.addEventListener("click", function() {
-        var popupWindow = document.getElementById("popup-window")
-        popupWindow.style.display = "none"
-    })
+    document.getElementById('close-button').addEventListener('click', hidePopup)
 }
 
 function contactSavanna() {
@@ -125,11 +93,15 @@ function contactSavanna() {
     </div>  
     `
     document.body.insertAdjacentHTML('beforeend', html)
-
-    var closeButton = document.getElementById("close-button")
-
-    closeButton.addEventListener("click", function() {
-        var popupWindow = document.getElementById("popup-window")
-        popupWindow.style.display = "none"
-    })
+    document.getElementById('close-button').addEventListener('click', hidePopup)
 }
+
+
+function hidePopup() {
+    document.getElementById('popup-window').style.display = 'none';
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('close-button').addEventListener('click', hidePopup);
+    });
+}
+
+
