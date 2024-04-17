@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/kotrynaguci/Documents/MIS321/321AAP/AAP-321-12/api/api.csproj": {}
+    "C:\\Users\\logan\\Group_Project\\AAP-321-12\\api\\api.csproj": {}
   },
   "projects": {
-    "/Users/kotrynaguci/Documents/MIS321/321AAP/AAP-321-12/api/api.csproj": {
+    "C:\\Users\\logan\\Group_Project\\AAP-321-12\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/kotrynaguci/Documents/MIS321/321AAP/AAP-321-12/api/api.csproj",
+        "projectUniqueName": "C:\\Users\\logan\\Group_Project\\AAP-321-12\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "/Users/kotrynaguci/Documents/MIS321/321AAP/AAP-321-12/api/api.csproj",
-        "packagesPath": "/Users/kotrynaguci/.nuget/packages/",
-        "outputPath": "/Users/kotrynaguci/Documents/MIS321/321AAP/AAP-321-12/api/obj/",
+        "projectPath": "C:\\Users\\logan\\Group_Project\\AAP-321-12\\api\\api.csproj",
+        "packagesPath": "C:\\Users\\logan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\logan\\Group_Project\\AAP-321-12\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/kotrynaguci/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\logan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -74,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -56,7 +56,7 @@ async function populateCards(){
                     Size: ${pets.size}<br>
                     Entered Shelter: ${pets.dateToShelter}
                 </p>
-                <button onclick="showPopup(${pets.petId})" class="btn btn-danger">More About ${pets.name}</button>
+                <button onclick="showPopup('${pets.petId}')" class="btn btn-danger">More About ${pets.name}</button>
                 </div>
                 </div>
                 </div>`
@@ -66,19 +66,18 @@ async function populateCards(){
     document.getElementById('app').innerHTML = html;
 }
 
-// function showPopup(petId) {
-//    const pet = myPets.find(p => p.petId === petId);
-//    html = `
-   
-//        <strong>Type:</strong> ${pet.animalType}<br>
-//        <strong>Age:</strong> ${pet.age}<br>
-//        <strong>Sex:</strong> ${pet.sex}<br>
-//        <strong>Breed:</strong> ${pet.breed}<br>
-//        <strong>Size:</strong> ${pet.size}<br>
-//        <strong>Entered Shelter:</strong> ${pet.dateToShelter}
-//    `
-//    document.getElementById('petInfoPopup').innerHTML = html;
-// }
+ function showPopup(petId) {
+    const pet = myPets.find(p => p.petId === petId);
+    html = ` 
+        <strong>Type:</strong> ${pet.animalType}<br>
+        <strong>Age:</strong> ${pet.age}<br>
+        <strong>Sex:</strong> ${pet.sex}<br>
+        <strong>Breed:</strong> ${pet.breed}<br>
+        <strong>Size:</strong> ${pet.size}<br>
+        <strong>Entered Shelter:</strong> ${pet.dateToShelter}
+    `
+    document.getElementById('petInfoPopup').innerHTML = html;
+ }
 
 function hidePopup() {
     document.getElementById('petInfoPopup').style.display = 'none';
