@@ -26,18 +26,18 @@ input[type=password]:focus {
     outline: none;
 }
 .popup {
-    display: none; /* Hide the popup by default */
-    position: fixed; /* Position the popup */
-    top: 50%; /* Center the popup vertically */
-    left: 50%; /* Center the popup horizontally */
-    transform: translate(-50%, -50%); /* Center the popup */
-    background-color: #fefefe; /* White background */
-    border: 1px solid #888; /* Border */
-    z-index: 1; /* Set the z-index */
+    display: none; 
+    position: fixed; 
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background-color: #fefefe; 
+    border: 1px solid #888; 
+    z-index: 1; 
 }
 .popup-content {
     background-color: #fefefe;
-    margin: 10% auto; /* 10% from the top and centered */
+    margin: 10% auto; 
     padding: 20px;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%; 
   }
