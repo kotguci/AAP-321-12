@@ -1,8 +1,11 @@
 let subjectUrl = "http://localhost:5161/api/Pets"
 let shelterUrl = "http://localhost:5161/api/Shelters"
+let applicationUrl = "http://localhost:5161/api/Application"
+let myApplications = []
 function handleOnLoad(){
     createAccount()
     populateshelterDetails()
+    handleApplications();
 }
 
 function createAccount(){
@@ -143,5 +146,57 @@ function handleSignOut(){
 
 }
 
+async function getApplications(){
+  let response = await fetch(applicationUrl);
+  myApplications = await response.json();
+  console.log(myApplications)
+}
+async function handleApplications() {
+  await getApplications();
+  let html = '';
+
+  myApplications.forEach(function(application) {
+      html += `
+      <div class="card">
+          <div class="card-body">
+              <h5 class="card-title">Name: ${application.firstName} ${application.lastName}</h5>
+              <p class="card-text">Email: ${application.email}</p>
+              <p class="card-text">Phone: ${application.phone}</p>
+              <p class="card-text">Address: ${application.address}, ${application.city}, ${application.state}, ${application.zipCode}</p>
+              <p class="card-text">House: ${application.house ? 'Yes' : 'No'}</p>
+              <p class="card-text">Rent: ${application.rent ? 'Yes' : 'No'}</p>
+              <p class="card-text">Past Pets: ${application.pastPets}</p>
+              <button type="button" class="btn btn-danger" onclick="handleDeny('${application.applicationId}',${application.approved})">Deny</button>
+              <button type="button" class="btn btn-success" onclick="handleApprove('${application.applicationId}')">Accept</button>
+
+          </div>
+      </div>`;
+  });
+
+  document.getElementById('app2').innerHTML = html;
+}
 
 
+async function handleDeny(applicationId) {
+ 
+
+  await fetch(applicationUrl + "/" + applicationId, {
+      method: "PUT",
+      headers: { 
+          "Content-type": "application/json; charset=UTF-8" 
+      },
+      body: 2
+  });
+}
+
+async function handleApprove(applicationId) {
+ 
+
+  await fetch(applicationUrl + "/" + applicationId, {
+      method: "PUT",
+      headers: { 
+          "Content-type": "application/json; charset=UTF-8" 
+      },
+      body: 1
+  });
+}

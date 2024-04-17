@@ -66,33 +66,21 @@ async function populateCards(){
     document.getElementById('app').innerHTML = html
 }
 
-<<<<<<< HEAD
- function showPopup(petId) {
-    const pet = myPets.find(p => p.petId === petId);
-    html = ` 
-=======
 function showPopup(petId) {
     const pet = myPets.find(p => p.petId === petId)
     const html = `
->>>>>>> refs/remotes/origin/main
         <strong>Type:</strong> ${pet.animalType}<br>
         <strong>Age:</strong> ${pet.age}<br>
         <strong>Sex:</strong> ${pet.sex}<br>
         <strong>Breed:</strong> ${pet.breed}<br>
-        <strong>Size:</strong> ${pet.size}<br>
+        <strong>Summary:</strong> ${pet.summary}<br>
         <strong>Entered Shelter:</strong> ${pet.dateToShelter}
-<<<<<<< HEAD
-    `
-    document.getElementById('petInfoPopup').innerHTML = html;
- }
-=======
         <button id="closePopupButton" class="btn btn-danger">Close</button>
     `;
     document.getElementById('petInfoPopup').innerHTML = html
     document.getElementById('petInfoPopup').style.display = 'block'
     document.getElementById('closePopupButton').addEventListener('click', hidePopup)
 }
->>>>>>> refs/remotes/origin/main
 
 function hidePopup() {
     document.getElementById('petInfoPopup').style.display = 'none'

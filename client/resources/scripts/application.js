@@ -79,7 +79,7 @@ async function handleNewApplication(){
         pastPets: document.getElementById("pastPets").value,
         userId: url3,
         shelterId: url2,
-        approved : false,
+        approved : 0,
         petId : url
 
     }

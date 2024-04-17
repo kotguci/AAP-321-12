@@ -46,7 +46,7 @@ namespace api.Controllers
                     pastPets = rdr["pastPets"].ToString(),
                     userId = rdr["userId"].ToString(),
                     shelterId = rdr["shelterId"].ToString(),
-                    approved = Convert.ToBoolean(rdr["approved"]),
+                    approved = Convert.ToInt32(rdr["approved"]),
                     petId = rdr["petId"].ToString()
 
                 
@@ -95,9 +95,22 @@ namespace api.Controllers
                 cmd.ExecuteNonQuery();
             }
         // PUT: api/Application/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{applicationId}")]
+        public void Put(string applicationId, [FromBody] int approved)
         {
+            string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
+                
+            using MySqlConnection con = new MySqlConnection(cs);
+            con.Open();
+
+            string query = "UPDATE Application SET approved = @Approved WHERE applicationId = @ApplicationId";
+            using MySqlCommand cmd = new MySqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@ApplicationId", applicationId);
+            cmd.Parameters.AddWithValue("@Approved", approved);
+
+            cmd.ExecuteNonQuery();
+
         }
 
         // DELETE: api/Application/5
