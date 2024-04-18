@@ -1,4 +1,13 @@
 let subjectUrl = "http://localhost:5161/api/Application"
+let subjectUrl2 = "http://localhost:5161/api/Pets"
+let myPets = []
+
+async function getPets(){
+  let response = await fetch(subjectUrl2);
+  myPets= await response.json();
+  console.log(myPets)
+}
+
 function handleOnLoad(){
   url3 = JSON.parse(localStorage.getItem('accountId'))
   if (url3 != null){
@@ -84,8 +93,15 @@ async function handleNewApplication(){
 
     }
     await saveApplication(application)
-    //createTable()
-    window.location.href = 'myAccount.html'
+
+      await fetch(subjectUrl2 + "/" + url, {
+          method: "PUT",
+          headers: { 
+              "Content-type": "application/json; charset=UTF-8" 
+          },
+      });
+    
+    //window.location.href = 'myAccount.html'
 
     }
   

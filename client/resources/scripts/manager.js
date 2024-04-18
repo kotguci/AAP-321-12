@@ -156,6 +156,7 @@ async function handleApplications() {
   let html = '';
 
   myApplications.forEach(function(application) {
+    if(application.approved == 0){
       html += `
       <div class="card">
           <div class="card-body">
@@ -166,20 +167,20 @@ async function handleApplications() {
               <p class="card-text">House: ${application.house ? 'Yes' : 'No'}</p>
               <p class="card-text">Rent: ${application.rent ? 'Yes' : 'No'}</p>
               <p class="card-text">Past Pets: ${application.pastPets}</p>
-              <button type="button" class="btn btn-danger" onclick="handleDeny('${application.applicationId}',${application.approved})">Deny</button>
+              <button type="button" class="btn btn-danger" onclick="handleDeny('${application.applicationId}','${application.petId}')">Deny</button>
               <button type="button" class="btn btn-success" onclick="handleApprove('${application.applicationId}')">Accept</button>
 
           </div>
       </div>`;
+    }
   });
 
   document.getElementById('app2').innerHTML = html;
 }
 
 
-async function handleDeny(applicationId) {
+async function handleDeny(applicationId, petId) {
  
-
   await fetch(applicationUrl + "/" + applicationId, {
       method: "PUT",
       headers: { 
@@ -187,6 +188,15 @@ async function handleDeny(applicationId) {
       },
       body: 2
   });
+
+  await fetch(subjectUrl + "/" + petId, {
+    method: "PUT",
+    headers: { 
+        "Content-type": "application/json; charset=UTF-8" 
+    },
+});
+
+
 }
 
 async function handleApprove(applicationId) {
@@ -199,4 +209,5 @@ async function handleApprove(applicationId) {
       },
       body: 1
   });
+  handleApplications();
 }

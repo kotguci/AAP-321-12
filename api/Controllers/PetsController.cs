@@ -72,9 +72,21 @@ namespace api.Controllers
             }
 
         // PUT: api/Pets/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{petId}")]
+        public void Put(string petId)
         {
+            string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
+                
+            using MySqlConnection con = new MySqlConnection(cs);
+            con.Open();
+
+            string query = "UPDATE Pet SET adopted = NOT adopted WHERE petId = @PetId";
+            using MySqlCommand cmd = new MySqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@PetId", petId);
+
+            cmd.ExecuteNonQuery();
+
         }
 
         // DELETE: api/Pets/5

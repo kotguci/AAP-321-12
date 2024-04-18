@@ -29,7 +29,7 @@ async function populateApplications() {
     await getAllPets();
     let html = '';
     myApplications.forEach(function(app) {
-    if(app.userId == url){
+    if(app.userId == url && app.approved == 0){
       const pet = myPets.find(pet => pet.petId === app.petId);
       html += `
       <div class="applicationCard" style="width: 18rem;">

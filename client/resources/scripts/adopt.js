@@ -19,7 +19,8 @@ async function populateCards(){
     console.log(url)
     let html = ''
     myPets.forEach(function(pets){
-        if(url == pets.shelterId){
+        
+        if(url == pets.shelterId && pets.adopted == 0){
             html += `
             <div class="petCardContainer"> 
             <div class="petCard" style="width: 18rem;">
