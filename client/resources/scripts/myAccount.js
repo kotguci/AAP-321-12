@@ -21,7 +21,9 @@ async function getAllPets(){
 
 function handleSignOut(){
     localStorage.removeItem('accountId')
-}
+    window.location.href = 'home.html'
+  
+  }
 
 async function populateApplications() {
     url = JSON.parse(localStorage.getItem('accountId'));

@@ -9,75 +9,72 @@ function handleOnLoad(){
 }
 
 function createAccount(){
-    let html= `
-    <form   style="border:1px solid #ccc">
-    <div class="container">
-      <p>Please fill in this form to add an animal.</p>
-      <hr>
-        
-      <label for="animalType"><b>Animal Type</b></label>
-            <select id="animalType" name="animalType" required>
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-            </select>
+  let html= `
+  <form   style="border:1px solid #ccc">
+  <div class="container">
+    <p>Please fill in this form to add an animal.</p>
+    <hr>
+      
+    <label for="animalType"><b>Animal Type</b></label><br>
+    <select id="animalType" name="animalType" required>
+      <option value="dog">Dog</option>
+      <option value="cat">Cat</option>
+    </select><br><br>
 
-        <label for="image"><b>Image (Paste Image URL)</b></label>
-        <input type="text" id="image" placeholder="Paste Image URL" name="image" required>
+    <label for="image"><b>Image (Paste Image URL)</b></label><br>
+    <input type="text" id="image" placeholder="Paste Image URL" name="image" required><br><br>
 
-        <label for="name"><b>Name</b></label>
-        <input type="text" id="name" placeholder="Enter Name" name="name" required>
+    <label for="name"><b>Name</b></label><br>
+    <input type="text" id="name" placeholder="Enter Name" name="name" required><br><br>
 
-        <label for="sex"><b>Sex</b></label>
-        <select id="sex" name="sex">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        </select>
+    <label for="sex"><b>Sex</b></label><br>
+    <select id="sex" name="sex">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select><br><br>
 
-        <label for="dateToShelter"><b>Date to Shelter</b></label>
-        <input type="date" id="dateToShelter" name="dateToShelter">
+    <label for="dateToShelter"><b>Date to Shelter</b></label><br>
+    <input type="date" id="dateToShelter" name="dateToShelter"><br><br>
 
-        <label for="summary"><b>Summary</b></label>
-        <textarea id="summary" name="summary" placeholder="Enter Summary" rows="4" cols="50"></textarea>
+    <label for="summary"><b>Summary</b></label><br>
+    <textarea id="summary" name="summary" placeholder="Enter Summary" rows="4" cols="50"></textarea><br><br>
 
-        <label for="breed"><b>Breed</b></label>
-        <input type="text" id="breed" placeholder="Enter Breed" name="breed" required>
+    <label for="breed"><b>Breed</b></label><br>
+    <input type="text" id="breed" placeholder="Enter Breed" name="breed" required><br><br>
 
-        <label for="age"><b>Age</b></label>
-        <input type="number" id="age" placeholder="Enter Age" name="age" required>
+    <label for="age"><b>Age</b></label><br>
+    <input type="number" id="age" placeholder="Enter Age" name="age" required><br><br>
 
-        <label for="size"><b>Size</b></label>
-        <select id="size" name="size">
-        <option value="small">Small</option>
-        <option value="medium">Medium</option>
-        <option value="large">Large</option>
-        </select>
+    <label for="size"><b>Size</b></label><br>
+    <select id="size" name="size">
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+    </select><br><br>
 
-        <label for="hypoallergenic"><b>Hypoallergenic</b></label>
-        <input type="checkbox" id="hypoallergenic" name="hypoallergenic">
+    <label for="hypoallergenic"><b>Hypoallergenic:   </b></label>
+    <input type="checkbox" id="hypoallergenic" name="hypoallergenic"><br><br>
 
-        <label for="aggressive"><b>Aggressive</b></label>
-        <input type="checkbox" id="aggressive" name="aggressive">
+    <label for="aggressive"><b>Aggressive:   </b></label>
+    <input type="checkbox" id="aggressive" name="aggressive"><br><br>
 
-        <label for="neuteredSpayed"><b>Neutered/Spayed</b></label>
-        <input type="checkbox" id="neuteredSpayed" name="neuteredSpayed">
+    <label for="neuteredSpayed"><b>Neutered/Spayed:   </b></label>
+    <input type="checkbox" id="neuteredSpayed" name="neuteredSpayed"><br><br>
 
-        <label for="shelterId"><b>Choose Shelter:</b></label>
-        <select id="shelterId">
-          <option value="">Select Shelter</option>
-        </select>
-       
+    <label for="shelterId"><b>Choose Shelter:</b></label><br>
+    <select id="shelterId">
+      <option value="">Select Shelter</option>
+    </select><br><br>
 
-  
-      <p>By creating an account you agree to our <a href="terms.html" target="_blank" style="color: black">Terms & Privacy</a>.</p>
+    <p>By creating an account you agree to our <a href="terms.html" target="_blank" style="color: black">Terms & Privacy</a>.</p>
 
-  
-      <div class="clearfix">
-        <button type="button" class="btn btn-danger" onclick="handleNewPet()">Submit</button>
-      </div>
+    <div class="clearfix">
+      <button type="button" class="btn btn-danger" onclick="handleNewPet()">Submit</button>
     </div>
-  </form>
-    `;
-    document.getElementById('addPet').innerHTML = html;
+  </div>
+</form>
+  `
+  document.getElementById('addPet').innerHTML = html
 }
 
 async function handleNewPet(){
@@ -169,6 +166,7 @@ async function handleApplications() {
               <p class="card-text">Past Pets: ${application.pastPets}</p>
               <button type="button" class="btn btn-danger" onclick="handleDeny('${application.applicationId}','${application.petId}')">Deny</button>
               <button type="button" class="btn btn-success" onclick="handleApprove('${application.applicationId}')">Accept</button>
+              <input type="text" id="inputBox" placeholder="Comments...">
 
           </div>
       </div>`;
