@@ -164,9 +164,10 @@ async function handleApplications() {
               <p class="card-text">House: ${application.house ? 'Yes' : 'No'}</p>
               <p class="card-text">Rent: ${application.rent ? 'Yes' : 'No'}</p>
               <p class="card-text">Past Pets: ${application.pastPets}</p>
+              <input type="text" id="inputBox" placeholder="Comments...">
               <button type="button" class="btn btn-danger" onclick="handleDeny('${application.applicationId}','${application.petId}')">Deny</button>
               <button type="button" class="btn btn-success" onclick="handleApprove('${application.applicationId}')">Accept</button>
-              <input type="text" id="inputBox" placeholder="Comments...">
+              
 
           </div>
       </div>`;
