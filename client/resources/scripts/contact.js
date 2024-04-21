@@ -5,9 +5,9 @@ function contactStetson() {
         <div id="popup-window" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid black;">
             <h1>Contact Stetson:</h1>
             <p>
-            Email: <br>
+            Email: stetson.dubberly@valentpartners.com<br>
             Phone: <br>
-            LinkedIn: <br>
+            LinkedIn: <a href=https://www.linkedin.com/in/stetsondubberly/">Click Here</a><br>
             </p>
             <button id="close-button" class="btn btn-danger">Close</button>
     </div>  
@@ -21,9 +21,9 @@ function contactRebeca() {
     <div id="popup-window" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid black;">
         <h1>Contact Rebeca:</h1>
         <p>
-        Email: <br>
+        Email: arcastellanos@crimson.ua.edu<br>
         Phone: <br>
-        LinkedIn: <br>
+        LinkedIn: <a href="https://www.linkedin.com/in/rebecacastellanos/">Click Here</a><br>
         </p>
         <button id="close-button" class="btn btn-danger">Close</button>
         </div>  
@@ -37,9 +37,9 @@ function contactLogan() {
     <div id="popup-window" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid black;">
         <h1>Contact Logan:</h1>
         <p>
-        Email: <br>
+        Email: lsbollinger@crimson.ua.edu<br>
         Phone: <br>
-        LinkedIn: <br>
+        LinkedIn: <a href="https://www.linkedin.com/in/logan-bollinger/">Click Here</a><br>
         </p>
         <button id="close-button" class="btn btn-danger">Close</button>
     </div>  
@@ -53,9 +53,9 @@ function contactKotryna() {
     <div id="popup-window" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid black;">
         <h1>Contact Kotryna:</h1>
         <p>
-        Email: <br>
-        Phone: <br>
-        LinkedIn: <br>
+        Email: kbgucius@crimson.ua.edu<br>
+        Phone: (630) 891-1595<br>
+        LinkedIn: <a href="https://www.linkedin.com/in/kotrynagucius/">Click Here</a><br>
         </p>
         <button id="close-button" class="btn btn-danger">Close</button>
         </div>  
@@ -69,9 +69,9 @@ function contactAbby() {
     <div id="popup-window" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid black;">
         <h1>Contact Abby:</h1>
         <p>
-        Email: <br>
+        Email: ammcclinton@crimson.ua.edu<br>
         Phone: <br>
-        LinkedIn: <br>
+        LinkedIn: <a href="https://www.linkedin.com/in/abby-mcclinton/">Click Here</a><br>
         </p>
         <button id="close-button" class="btn btn-danger">Close</button>
     </div>  
@@ -85,9 +85,9 @@ function contactSavanna() {
     <div id="popup-window" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid black;">
         <h1>Contact Savanna:</h1>
         <p>
-        Email: <br>
+        Email: sdshaw1@crimson.ua.edu<br>
         Phone: <br>
-        LinkedIn: <br>
+        LinkedIn: <a href="https://www.linkedin.com/in/savanna-shaw-b9026b232/">Click Here</a><br>
         </p>
         <button id="close-button" class="btn btn-danger">Close</button>
     </div>  
