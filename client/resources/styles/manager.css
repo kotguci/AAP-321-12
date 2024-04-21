@@ -103,3 +103,26 @@ body {
     margin-left: calc(100% - 300px);
     margin-top: center;
 }
+
+/* Table Styles */
+table {
+    width: 100%; /* Full width of the container */
+    border-collapse: collapse; /* Collapses the border between cells */
+    table-layout: fixed; /* Ensures even spacing of columns */
+}
+
+th, td {
+    border: 1px solid #ccc; /* Light grey border for readability */
+    padding: 10px; /* Padding inside cells for space around text */
+    text-align: left; /* Align text to the left */
+    vertical-align: top; /* Align content at the top of the cell */
+}
+
+th {
+    background-color: #f2f2f2; /* Light grey background for headers */
+    width: 40%; /* Wider headers to accommodate text */
+}
+
+td {
+    background-color: #fff; /* White background for data cells */
+}

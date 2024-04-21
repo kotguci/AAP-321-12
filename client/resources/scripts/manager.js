@@ -1,14 +1,54 @@
-let subjectUrl = "http://localhost:5161/api/Pets"
+let petUrl = "http://localhost:5161/api/Pets"
 let shelterUrl = "http://localhost:5161/api/Shelters"
 let applicationUrl = "http://localhost:5161/api/Application"
+let userAccountUrl = "http://localhost:5161/api/Accounts"
 let myApplications = []
-function handleOnLoad(){
-    createAccount()
-    populateshelterDetails()
-    handleApplications();
+let myShelters = []
+let myPets = []
+let myAccounts = []
+
+
+async function handleOnLoad(){
+  createAccount()
+  handleApplications();
+  GetTheRestEverything();
+  createDashboard()
+
 }
 
-function createAccount(){
+
+
+
+
+
+
+
+
+
+
+
+async function GetTheRestEverything(){
+    await getPets()
+    await getAccounts()
+}
+
+
+
+async function getPets(){
+    let response = await fetch(petUrl);
+    myPets = await response.json();
+    console.log(myPets);
+  }
+
+  async function getAccounts(){
+    let response = await fetch(userAccountUrl);
+    myAccounts = await response.json();
+    console.log(myAccounts);
+  }
+
+
+
+async function createAccount(){
     let html= `
     <form   style="border:1px solid #ccc">
     <div class="container">
@@ -78,6 +118,7 @@ function createAccount(){
   </form>
     `;
     document.getElementById('addPet').innerHTML = html;
+    await populateshelterDetails()
 }
 
 async function handleNewPet(){
@@ -106,7 +147,7 @@ async function handleNewPet(){
   
   async function savePet(pet){
     
-    await fetch(subjectUrl, {
+    await fetch(petUrl, {
             method: "POST",
             body: JSON.stringify(pet),
             headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -116,14 +157,12 @@ async function handleNewPet(){
   async function getShelters(){
     let response = await fetch(shelterUrl);
     myShelters = await response.json();
-    console.log(myShelters);
   }
 
-  async function populateshelterDetails() {
+  async function populateshelterDetails(selectId = 'shelterId') {
     url = JSON.parse(localStorage.getItem('accountId'));
-    console.log(url)
-    await getShelters()
-    var existingManagerSelect = document.getElementById('shelterId');
+    await getShelters();
+    var existingManagerSelect = document.getElementById(selectId);
 
     // Clear existing options except the default one
     existingManagerSelect.innerHTML = '<option value="">Select Shelter</option>';
@@ -135,10 +174,10 @@ async function handleNewPet(){
         option.value = shelter.shelterId; // Assuming managerAccountId is the unique ID for each manager
         option.textContent = shelter.name;
         existingManagerSelect.appendChild(option);
-        console.log(shelter.shelterId)
       }
     });
 }
+
 
 function handleSignOut(){
   localStorage.removeItem('accountId')
@@ -189,7 +228,7 @@ async function handleDeny(applicationId, petId) {
       body: 2
   });
 
-  await fetch(subjectUrl + "/" + petId, {
+  await fetch(petUrl + "/" + petId, {
     method: "PUT",
     headers: { 
         "Content-type": "application/json; charset=UTF-8" 
@@ -210,4 +249,68 @@ async function handleApprove(applicationId) {
       body: 1
   });
   handleApplications();
+}
+
+async function createDashboard(){
+  let petsCount = await currentAvailablePets()
+  let liveApplications = await countLiveApplications()
+  let html = `
+  <label for="shelterIdDashboard"><b>Choose Shelter:</b></label>
+  <select id="shelterIdDashboard">
+    <option value="">Select Shelter</option>
+  </select>
+  <table>
+    <tr>
+      <th>Current Available Pets</th>
+      <td>${petsCount}</td>
+    </tr>
+    <tr>
+      <th>Number of Open Applications</th>
+      <td>${liveApplications}</td>
+    </tr>
+    <tr>
+      <th>Number of Rejected Applications</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Total Adopted Pets</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Number of Active Reservations</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Number of Accounts</th>
+      <td></td>
+    </tr>
+  </table>`;
+
+document.getElementById('performance').innerHTML = html;
+await populateshelterDetails('shelterIdDashboard')
+}
+
+async function currentAvailablePets(){
+  return new Promise((resolve, reject) => {
+    let shelterId = localStorage.getItem('shelterId')
+    // Simulate loading data from the database
+    setTimeout(() => {
+      // Assuming myPets is loaded globally
+      let fileteredPets = myPets.filter(myPets => myPets.shelterId == shelterId)
+      let currentPetsCount = fileteredPets.length;
+      resolve(currentPetsCount);
+    }, 3000); // Adjust the timeout as needed
+  });
+}
+
+async function countLiveApplications(){
+  return new Promise((resolve, reject) => {
+    let shelterId = localStorage.getItem('shelterId')
+    setTimeout(() => {
+      // Assuming applications is loaded globally
+      let liveApplications = myApplications.filter(myApplications => myApplications.approved == 0 && myApplications.shelterId == shelterId);
+      let liveApplicationsCount = liveApplications.length;
+      resolve(liveApplicationsCount);
+    }, 3000); // Adjust the delay as needed
+  });
 }
