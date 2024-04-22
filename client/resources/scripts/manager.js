@@ -154,7 +154,7 @@ async function handleNewPet(){
   async function getShelters(){
     let response = await fetch(shelterUrl);
     myShelters = await response.json();
-    
+    console.log(myShelters)
   }
 
   async function populateshelterDetails(selectId = 'shelterId') {
@@ -184,6 +184,7 @@ function handleSignOut(){
 }
 
 async function getApplications(){
+  
   let response = await fetch(applicationUrl);
   myApplications = await response.json();
   console.log(myApplications)
@@ -191,7 +192,35 @@ async function getApplications(){
 async function handleApplications() {
   await getApplications();
   let html = '';
-  myApplications.forEach(function(application) {
+
+  url = localStorage.getItem('accountId')
+  url = url.replace(/^"|"$/g, '')
+  let correctArrays = []
+  let finalArrays = []
+  myShelters.forEach(function (shelter){
+
+    if(shelter.managerAccountId == url){
+      correctArrays.push(shelter)
+    }
+  })
+
+// Iterate over each shelter in correctArrays
+correctArrays.forEach(function (shelter) {
+  myApplications.forEach(function (myApp) {
+      // Compare shelterId of the current shelter with shelterId of each application
+      if (shelter.shelterId === myApp.shelterId) {
+          // If shelterId matches, push the matching application into finalArrays
+          finalArrays.push(myApp);
+      }
+  });
+});
+
+
+// Now finalArrays contains all applications that match the shelters in correctArrays
+
+  finalArrays.forEach(function(application) {
+
+
     if(application.approved == 0 ){
       html += `
       <div class="card">
@@ -337,10 +366,10 @@ async function currentAvailablePets(shelterId){
     // Simulate loading data from the database
     setTimeout(() => {
       // Assuming myPets is loaded globally
-      let fileteredPets = myPets.filter(myPets => myPets.shelterId == shelterId && myPets.adopted == 1)
+      let fileteredPets = myPets.filter(myPets => myPets.shelterId == shelterId && myPets.adopted == 0)
       let currentPetsCount = fileteredPets.length;
       resolve(currentPetsCount);
-    }, 2000); // Adjust the timeout as needed
+    }, 500); // Adjust the timeout as needed
   });
 }
 
@@ -352,7 +381,7 @@ async function getNumOfApplications(shelterId){
       let fileteredApplications = myApplications.filter(myApplications => myApplications.shelterId == shelterId)
       let currentPetsCount = fileteredApplications.length;
       resolve(currentPetsCount);
-    }, 2000); // Adjust the timeout as needed
+    }, 500); // Adjust the timeout as needed
   });
 }
 
@@ -361,10 +390,10 @@ async function getTotalAdoptedPets(shelterId){
     // Simulate loading data from the database
     setTimeout(() => {
       // Assuming myPets is loaded globally
-      let fileteredPets = myApplications.filter(myApplications => myApplications.shelterId == shelterId && myApplications.approved == 1)
+      let fileteredPets = myApplications.filter(myApplications => myApplications.shelterId == shelterId && myApplications.approved == 2)
       let currentPetsCount = fileteredPets.length;
       resolve(currentPetsCount);
-    }, 2000); // Adjust the timeout as needed
+    }, 500); // Adjust the timeout as needed
   });
 }
 
@@ -375,7 +404,7 @@ async function countLiveApplications(shelterId){
       let liveApplications = myApplications.filter(myApplications => myApplications.approved == 0 && myApplications.shelterId == shelterId);
       let liveApplicationsCount = liveApplications.length;
       resolve(liveApplicationsCount);
-    }, 2000); // Adjust the delay as needed
+    }, 500); // Adjust the delay as needed
   });
 }
 
@@ -386,6 +415,6 @@ async function countRejectedApplications(shelterId){
       let liveApplications = myApplications.filter(myApplications => myApplications.approved == 1 && myApplications.shelterId == shelterId);
       let liveApplicationsCount = liveApplications.length;
       resolve(liveApplicationsCount);
-    }, 2000); // Adjust the delay as needed
+    }, 500); // Adjust the delay as needed
   });
 }

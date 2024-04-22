@@ -8,9 +8,24 @@
     <link rel="stylesheet" href="resources/styles/mainManager.css">
 </head>
 <body onload="handleOnLoad()">
+    <div id="button-header">
+        <div id="top-buttons">
+            <button class="btn btn-light" onclick="window.location.href='browse.html'">Browse Centers</button>
+            <button class="btn btn-light" onclick="window.location.href='adopt.html'">Adopt A Pet</button>
+            <button class="btn btn-light" onclick="window.location.href='contact.html'">About Us</button>
+        </div>
+        <div id="sign-in">
+            <button class="btn btn-dark" onclick="window.location.href='home.html'"">Home</button>
+            <button class="btn btn-dark" onclick="handleSignOut()"">Sign Out</button>
+
+        </div>
+    </div>
     <div class="containter">
         <div class="row">
-            <div class="col-md-4">      
+            <div class="col-md-4"> 
+                <h1 class="text-center">Approve Applications</h1><br>
+
+                <div id="applications"></div>
             </div>
             <div class="col-md-4">
                 <h1 class="text-center">Add Shelter</h1><br>
@@ -34,24 +49,13 @@
                   </div>
             </div>
             <div class="col-md-4">
-
+                <h1 class="text-center">Performance</h1><br>
+                <div id="performance"></div>
             </div>
 
         </div>
     </div>
-    <!-- <div class="app">
-
-        <aside class="sidebar">
-            <h3>Menu</h3>
-            <nav class="menu">
-                <a href="home.html" class="menu-item">Home</a>
-                <a href="browse.html" class="menu-item">Browse</a>
-                <a href="adopt.html" class="menu-item is-active">Adopt A Pet</a>
-                <a href="contact.html" class="menu-item">About Us</a>
-                <a href="signin.html" class="menu-item">Sign In</a>
-            </nav>
-        </aside>
-    </div> -->
+ 
 
 
 
