@@ -20,6 +20,18 @@
                 <button class="btn btn-dark" onclick="window.location.href='signin.html'"">Sign In</button>
             </div>
         </div>
+        <div>
+            <label for="sortCriterion">Sort by:</label>
+            <select id="sortCriterion" onchange="sortPets()">
+                <option value="breed">Breed</option>
+                <option value="size">Size</option>
+                <option value="age">Age</option>
+                <option value="aggressive">Aggressive</option>
+                <option value="neuteredSpayed">Neutered/Spayed</option>
+                <option value="hypoallergenic">Hypoallergenic</option>
+            </select>
+        </div>       
+        
         <div id="app"></div>
 
     <script src="./resources/scripts/adopt.js"></script>

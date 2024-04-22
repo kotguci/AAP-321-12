@@ -13,11 +13,26 @@ async function getAllPets(){
     console.log(myPets);
 }
 
-async function populateCards(){
+async function populateCards(sortCriterion){
     await getAllPets()
     url = JSON.parse(localStorage.getItem('shelterId'));
     console.log(url)
     let html = ''
+
+    if (sortCriterion === 'breed') {
+        myPets.sort((a, b) => a.breed.localeCompare(b.breed));
+    } else if (sortCriterion === 'size') {
+        myPets.sort((a, b) => a.size.localeCompare(b.size));
+    } else if (sortCriterion === 'age') {
+        myPets.sort((a, b) => parseInt(a.age) - parseInt(b.age));
+    } else if (sortCriterion === 'aggressive') {
+        myPets.sort((a, b) => a.aggressive === b.aggressive ? 0 : a.aggressive ? -1 : 1);
+    } else if (sortCriterion === 'neuteredSpayed') {
+        myPets.sort((a, b) => a.neuteredSpayed === b.neuteredSpayed ? 0 : a.neuteredSpayed ? -1 : 1);
+    } else if (sortCriterion === 'hypoallergenic') {
+        myPets.sort((a, b) => a.hypoallergenic === b.hypoallergenic ? 0 : a.hypoallergenic ? -1 : 1);
+    }
+    
     myPets.forEach(function(pets){
         
         if(url == pets.shelterId && pets.adopted == 0){
@@ -33,6 +48,9 @@ async function populateCards(){
                     Sex: ${pets.sex}<br>
                     Breed: ${pets.breed}<br>
                     Size: ${pets.size}<br>
+                    Aggresive: ${pets.aggresive ? 'Yes' : 'No'}<br>
+                    Hypoallergenic: ${pets.hypoallergenic ? 'Yes' : 'No'}<br>
+                    Neutered / Spayed: ${pets.neuteredSpayed? 'Yes' : 'No'}<br>
                     Entered Shelter: ${pets.dateToShelter}
                 </p>
                 <button onclick="showPopup('${pets.petId}')" class="btn btn-danger">More About ${pets.name}</button>
@@ -55,6 +73,9 @@ async function populateCards(){
                     Sex: ${pets.sex}<br>
                     Breed: ${pets.breed}<br>
                     Size: ${pets.size}<br>
+                    Aggresive: ${pets.aggresive ? 'Yes' : 'No'}<br>
+                    Hypoallergenic: ${pets.hypoallergenic ? 'Yes' : 'No'}<br>
+                    Neutered / Spayed: ${pets.neuteredSpayed? 'Yes' : 'No'}<br>
                     Entered Shelter: ${pets.dateToShelter}
                 </p>
                 <button onclick="showPopup('${pets.petId}')" class="btn btn-danger">More About ${pets.name}</button>
@@ -65,6 +86,11 @@ async function populateCards(){
         
     })
     document.getElementById('app').innerHTML = html
+}
+
+function sortPets() {
+    const sortCriterion = document.getElementById('sortCriterion').value;
+    populateCards(sortCriterion);
 }
 
 function showPopup(petId) {
