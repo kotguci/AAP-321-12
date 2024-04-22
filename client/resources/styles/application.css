@@ -1,8 +1,11 @@
 body {
     margin: 0;
-    background-color: rgb(255, 255, 255);
+    background-image: url("https://freerangestock.com/sample/142767/cute-retriever-puppy-on-white-background.jpg");
+    background-size: cover;
+    background-position: center;
     padding-top: 50px;
 }
+
 
 #button-header {
     display: flex;
