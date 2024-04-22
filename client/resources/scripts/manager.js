@@ -9,6 +9,7 @@ let myAccounts = []
 
 
 async function handleOnLoad(){
+  await getShelters()
   createAccount()
   handleApplications();
   GetTheRestEverything();
@@ -153,11 +154,12 @@ async function handleNewPet(){
   async function getShelters(){
     let response = await fetch(shelterUrl);
     myShelters = await response.json();
+    
   }
 
   async function populateshelterDetails(selectId = 'shelterId') {
     url = JSON.parse(localStorage.getItem('accountId'));
-    await getShelters();
+    //await getShelters();
     var existingManagerSelect = document.getElementById(selectId);
 
     // Clear existing options except the default one
@@ -189,7 +191,6 @@ async function getApplications(){
 async function handleApplications() {
   await getApplications();
   let html = '';
-
   myApplications.forEach(function(application) {
     if(application.approved == 0 ){
       html += `
@@ -274,11 +275,7 @@ async function createDashboard(){
       <td></td>
     </tr>
     <tr>
-      <th>Number of Active Reservations</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>Number of Accounts</th>
+      <th>Total Applications</th>
       <td></td>
     </tr>
   </table>`;
@@ -299,6 +296,9 @@ async function getSelectedShelter() {
 
   let petsCount = await currentAvailablePets(shelterId)
   let liveApplications = await countLiveApplications(shelterId)
+  let rejectedApplications = await countRejectedApplications(shelterId)
+  let totalAdoptedPets = await getTotalAdoptedPets(shelterId)
+  let numOfApplications = await getNumOfApplications(shelterId)
   let html = `
   <label for="shelterIdDashboard"><b>Choose Shelter:</b></label>
   <select id="shelterIdDashboard" onchange="getSelectedShelter()">
@@ -315,19 +315,15 @@ async function getSelectedShelter() {
     </tr>
     <tr>
       <th>Number of Rejected Applications</th>
-      <td></td>
+      <td>${rejectedApplications}</td>
     </tr>
     <tr>
       <th>Total Adopted Pets</th>
-      <td></td>
+      <td>${totalAdoptedPets}</td>
     </tr>
     <tr>
-      <th>Number of Active Reservations</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>Number of Accounts</th>
-      <td></td>
+      <th>Total Applications</th>
+      <td>${numOfApplications}</td>
     </tr>
   </table>`;
 
@@ -341,7 +337,31 @@ async function currentAvailablePets(shelterId){
     // Simulate loading data from the database
     setTimeout(() => {
       // Assuming myPets is loaded globally
-      let fileteredPets = myPets.filter(myPets => myPets.shelterId == shelterId)
+      let fileteredPets = myPets.filter(myPets => myPets.shelterId == shelterId && myPets.adopted == 1)
+      let currentPetsCount = fileteredPets.length;
+      resolve(currentPetsCount);
+    }, 2000); // Adjust the timeout as needed
+  });
+}
+
+async function getNumOfApplications(shelterId){
+  return new Promise((resolve, reject) => {
+    // Simulate loading data from the database
+    setTimeout(() => {
+      // Assuming myPets is loaded globally
+      let fileteredApplications = myApplications.filter(myApplications => myApplications.shelterId == shelterId)
+      let currentPetsCount = fileteredApplications.length;
+      resolve(currentPetsCount);
+    }, 2000); // Adjust the timeout as needed
+  });
+}
+
+async function getTotalAdoptedPets(shelterId){
+  return new Promise((resolve, reject) => {
+    // Simulate loading data from the database
+    setTimeout(() => {
+      // Assuming myPets is loaded globally
+      let fileteredPets = myApplications.filter(myApplications => myApplications.shelterId == shelterId && myApplications.approved == 1)
       let currentPetsCount = fileteredPets.length;
       resolve(currentPetsCount);
     }, 2000); // Adjust the timeout as needed
@@ -353,6 +373,17 @@ async function countLiveApplications(shelterId){
     setTimeout(() => {
       // Assuming applications is loaded globally
       let liveApplications = myApplications.filter(myApplications => myApplications.approved == 0 && myApplications.shelterId == shelterId);
+      let liveApplicationsCount = liveApplications.length;
+      resolve(liveApplicationsCount);
+    }, 2000); // Adjust the delay as needed
+  });
+}
+
+async function countRejectedApplications(shelterId){
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // Assuming applications is loaded globally
+      let liveApplications = myApplications.filter(myApplications => myApplications.approved == 1 && myApplications.shelterId == shelterId);
       let liveApplicationsCount = liveApplications.length;
       resolve(liveApplicationsCount);
     }, 2000); // Adjust the delay as needed
