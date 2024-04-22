@@ -16,7 +16,6 @@ async function handleOnLoad(){
 
 }
 
-<<<<<<< HEAD
 
 
 
@@ -61,20 +60,6 @@ async function createAccount(){
             <option value="dog">Dog</option>
             <option value="cat">Cat</option>
             </select>
-=======
-function createAccount(){
-  let html= `
-  <form   style="border:1px solid #ccc">
-  <div class="container">
-    <p>Please fill in this form to add an animal.</p>
-    <hr>
-      
-    <label for="animalType"><b>Animal Type</b></label><br>
-    <select id="animalType" name="animalType" required>
-      <option value="dog">Dog</option>
-      <option value="cat">Cat</option>
-    </select><br><br>
->>>>>>> refs/remotes/origin/main
 
     <label for="image"><b>Image (Paste Image URL)</b></label><br>
     <input type="text" id="image" placeholder="Paste Image URL" name="image" required><br><br>
@@ -126,17 +111,10 @@ function createAccount(){
     <div class="clearfix">
       <button type="button" class="btn btn-danger" onclick="handleNewPet()">Submit</button>
     </div>
-<<<<<<< HEAD
   </form>
     `;
     document.getElementById('addPet').innerHTML = html;
     await populateshelterDetails()
-=======
-  </div>
-</form>
-  `
-  document.getElementById('addPet').innerHTML = html
->>>>>>> refs/remotes/origin/main
 }
 
 async function handleNewPet(){
@@ -213,7 +191,7 @@ async function handleApplications() {
   let html = '';
 
   myApplications.forEach(function(application) {
-    if(application.approved == 0){
+    if(application.approved == 0 ){
       html += `
       <div class="card">
           <div class="card-body">
@@ -272,11 +250,58 @@ async function handleApprove(applicationId) {
 }
 
 async function createDashboard(){
-  let petsCount = await currentAvailablePets()
-  let liveApplications = await countLiveApplications()
+  
   let html = `
   <label for="shelterIdDashboard"><b>Choose Shelter:</b></label>
-  <select id="shelterIdDashboard">
+  <select id="shelterIdDashboard" onchange="getSelectedShelter()">
+    <option value="">Select Shelter</option>
+  </select>
+  <table>
+    <tr>
+      <th>Current Available Pets</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Number of Open Applications</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Number of Rejected Applications</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Total Adopted Pets</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Number of Active Reservations</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Number of Accounts</th>
+      <td></td>
+    </tr>
+  </table>`;
+
+document.getElementById('performance').innerHTML = html;
+await populateshelterDetails('shelterIdDashboard')
+}
+
+async function getSelectedShelter() {
+  var select = document.getElementById("shelterIdDashboard");
+  var selectedOption = select.options[select.selectedIndex];
+  var shelterId = selectedOption.value;
+  var shelterName = selectedOption.text;
+  
+  // Now you can use shelterId to display information specific to that shelter
+  console.log("Selected Shelter ID:", shelterId);
+  console.log("Selected Shelter Name:", shelterName);
+
+  let petsCount = await currentAvailablePets(shelterId)
+  let liveApplications = await countLiveApplications(shelterId)
+  let html = `
+  <label for="shelterIdDashboard"><b>Choose Shelter:</b></label>
+  <select id="shelterIdDashboard" onchange="getSelectedShelter()">
     <option value="">Select Shelter</option>
   </select>
   <table>
@@ -308,29 +333,28 @@ async function createDashboard(){
 
 document.getElementById('performance').innerHTML = html;
 await populateshelterDetails('shelterIdDashboard')
+
 }
 
-async function currentAvailablePets(){
+async function currentAvailablePets(shelterId){
   return new Promise((resolve, reject) => {
-    let shelterId = localStorage.getItem('shelterId')
     // Simulate loading data from the database
     setTimeout(() => {
       // Assuming myPets is loaded globally
       let fileteredPets = myPets.filter(myPets => myPets.shelterId == shelterId)
       let currentPetsCount = fileteredPets.length;
       resolve(currentPetsCount);
-    }, 3000); // Adjust the timeout as needed
+    }, 2000); // Adjust the timeout as needed
   });
 }
 
-async function countLiveApplications(){
+async function countLiveApplications(shelterId){
   return new Promise((resolve, reject) => {
-    let shelterId = localStorage.getItem('shelterId')
     setTimeout(() => {
       // Assuming applications is loaded globally
       let liveApplications = myApplications.filter(myApplications => myApplications.approved == 0 && myApplications.shelterId == shelterId);
       let liveApplicationsCount = liveApplications.length;
       resolve(liveApplicationsCount);
-    }, 3000); // Adjust the delay as needed
+    }, 2000); // Adjust the delay as needed
   });
 }
