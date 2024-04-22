@@ -46,7 +46,7 @@ function createApplication(){
         <label for="email"><b>Email</b></label>
         <input type="text" id="email" placeholder="Enter Email" name="email" required><br><br>
 
-        <label><input type="checkbox" id="rent" name="rent"> Rent</label><br><br>
+        <label><input type="checkbox" id="rent" name="rent"> Rent</label><br>
 
         <label><input type="checkbox" id="house" name="house"> House</label><br><br>
 
@@ -58,11 +58,12 @@ function createApplication(){
   
       <div class="clearfix">
         <button type="button" class="btn btn-danger" onclick="handleNewApplication()">Submit</button>
+        <button type="button" class="btn btn-dark" onclick="window.location.href='adopt.html'">Cancel</button>
       </div>
     </div>
   </form>
-    `;
-    document.getElementById('app').innerHTML = html;
+    `
+    document.getElementById('app').innerHTML = html
 }
 
 // local storage for userId to keep track

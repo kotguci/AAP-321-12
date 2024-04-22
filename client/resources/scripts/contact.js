@@ -96,7 +96,6 @@ function contactSavanna() {
     document.getElementById('close-button').addEventListener('click', hidePopup)
 }
 
-
 function hidePopup() {
     document.getElementById('popup-window').style.display = 'none';
     document.addEventListener('DOMContentLoaded', function() {

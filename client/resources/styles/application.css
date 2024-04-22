@@ -1,7 +1,9 @@
 body {
     margin: 0;
     background-color: rgb(255, 255, 255);
+    padding-top: 50px;
 }
+
 #button-header {
     display: flex;
     align-items: center;
@@ -31,4 +33,59 @@ body {
     position: fixed;
     margin-left: calc(100% - 300px);
     margin-top: center;
+}
+
+form {
+    border: 1px solid #ccc;
+    margin-top: -120px;
+}
+
+.container {
+    padding: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+input[type=checkbox] {
+    margin-top: 10px;
+}
+
+p {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.clearfix {
+    margin-top: 20px;
+    text-align: center; 
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #DC143C;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #B22222;
+}
+
+#header {
+    text-align: center;
+    margin-top: 60px;
+}
+
+#header h1 {
+    margin-bottom: 0px;
 }
