@@ -9,7 +9,6 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using api.Models;
 using MySql.Data.MySqlClient.Authentication;
-using api.Services;
 using Org.BouncyCastle.Utilities.IO;
 
 namespace api.Controllers
@@ -24,10 +23,38 @@ namespace api.Controllers
         public List<Pets> Get()
 
         {
-            GetPet test = new GetPet();
-            List<Pets> myPets = test.Get();
+            string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
+            MySqlConnection con = new MySqlConnection(cs);
+            con.Open();
+            
+            using var cmd = new MySqlCommand("SELECT animalType, image, sex, petId, dateToShelter, summary, breed, age, size, hypoallergenic, aggressive, neuteredSpayed, shelterId, reserved, adopted, name FROM Pet", con);
+            using MySqlDataReader rdr = cmd.ExecuteReader();
+            List<Pets> myPets = new List<Pets>();
+
+            while (rdr.Read()){
+                myPets.Add(new Pets()
+                {
+                animalType = rdr["animalType"].ToString(),
+                image = rdr["image"].ToString(), 
+                sex = rdr["sex"].ToString(), 
+                petId = rdr["petId"].ToString(), 
+                dateToShelter = rdr["dateToShelter"].ToString(), 
+                summary = rdr["summary"].ToString(), 
+                breed = rdr["breed"].ToString(), 
+                age = rdr["age"].ToString(), 
+                size = rdr["size"].ToString(), 
+                hypoallergenic = rdr.GetBoolean(rdr.GetOrdinal("hypoallergenic")), 
+                aggressive = rdr.GetBoolean(rdr.GetOrdinal("aggressive")),
+                neuteredSpayed = rdr.GetBoolean(rdr.GetOrdinal("neuteredSpayed")),
+                shelterId = rdr["shelterId"].ToString(), 
+                reserved = rdr.GetBoolean(rdr.GetOrdinal("reserved")),  
+                adopted = rdr.GetBoolean(rdr.GetOrdinal("adopted")), 
+                name = rdr["name"].ToString(), 
+                });
+            }
+            con.Close();
+
             return myPets;
-           
         }
 
         // GET: api/Pets/5
@@ -69,6 +96,8 @@ namespace api.Controllers
                 
                 // Execute the command
                 cmd.ExecuteNonQuery();
+                con.Close();
+
             }
 
         // PUT: api/Pets/5
@@ -86,6 +115,8 @@ namespace api.Controllers
             cmd.Parameters.AddWithValue("@PetId", petId);
 
             cmd.ExecuteNonQuery();
+            con.Close();
+
 
         }
 
@@ -117,27 +148,29 @@ namespace api.Controllers
                              adopted = @Adopted
                          WHERE petId = @PetId";
 
-        using (MySqlCommand command = new MySqlCommand(query, con))
-        {
-            command.Parameters.AddWithValue("@AnimalType", updatedPet.animalType);
-            command.Parameters.AddWithValue("@Age", updatedPet.age);
-            command.Parameters.AddWithValue("@Sex", updatedPet.sex);
-            command.Parameters.AddWithValue("@Breed", updatedPet.breed);
-            command.Parameters.AddWithValue("@DateToShelter", updatedPet.dateToShelter);
-            command.Parameters.AddWithValue("@Hypoallergenic", updatedPet.hypoallergenic);
-            command.Parameters.AddWithValue("@Aggressive", updatedPet.aggressive);
-            command.Parameters.AddWithValue("@NeuteredSpayed", updatedPet.neuteredSpayed);
-            command.Parameters.AddWithValue("@Image", updatedPet.image);
-            command.Parameters.AddWithValue("@Name", updatedPet.name);
-            command.Parameters.AddWithValue("@Reserved", updatedPet.reserved);
-            command.Parameters.AddWithValue("@ShelterId", updatedPet.shelterId);
-            command.Parameters.AddWithValue("@Size", updatedPet.size);
-            command.Parameters.AddWithValue("@Summary", updatedPet.summary);
-            command.Parameters.AddWithValue("@Adopted", updatedPet.adopted);
-            command.Parameters.AddWithValue("@PetId", petId);
+                        using (MySqlCommand command = new MySqlCommand(query, con))
+                        {
+                            command.Parameters.AddWithValue("@AnimalType", updatedPet.animalType);
+                            command.Parameters.AddWithValue("@Age", updatedPet.age);
+                            command.Parameters.AddWithValue("@Sex", updatedPet.sex);
+                            command.Parameters.AddWithValue("@Breed", updatedPet.breed);
+                            command.Parameters.AddWithValue("@DateToShelter", updatedPet.dateToShelter);
+                            command.Parameters.AddWithValue("@Hypoallergenic", updatedPet.hypoallergenic);
+                            command.Parameters.AddWithValue("@Aggressive", updatedPet.aggressive);
+                            command.Parameters.AddWithValue("@NeuteredSpayed", updatedPet.neuteredSpayed);
+                            command.Parameters.AddWithValue("@Image", updatedPet.image);
+                            command.Parameters.AddWithValue("@Name", updatedPet.name);
+                            command.Parameters.AddWithValue("@Reserved", updatedPet.reserved);
+                            command.Parameters.AddWithValue("@ShelterId", updatedPet.shelterId);
+                            command.Parameters.AddWithValue("@Size", updatedPet.size);
+                            command.Parameters.AddWithValue("@Summary", updatedPet.summary);
+                            command.Parameters.AddWithValue("@Adopted", updatedPet.adopted);
+                            command.Parameters.AddWithValue("@PetId", petId);
 
-            command.ExecuteNonQuery();
-        }
+                            command.ExecuteNonQuery();
+                        }
+            con.Close();
+
         }
     }
 }

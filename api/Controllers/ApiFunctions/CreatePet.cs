@@ -25,5 +25,8 @@ using api.Models;
                 
                 // Execute the command
                 cmd.ExecuteNonQuery();
+
+                con.Close();
+
             }
     }

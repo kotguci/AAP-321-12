@@ -52,6 +52,8 @@ namespace api.Controllers
                 
                 });
             }
+            con.Close();
+
             return myApplications;
         }
 
@@ -93,6 +95,8 @@ namespace api.Controllers
                 
                 // Execute the command
                 cmd.ExecuteNonQuery();
+                con.Close();
+
             }
         // PUT: api/Application/5
         [HttpPut("{applicationId}")]
@@ -110,6 +114,8 @@ namespace api.Controllers
             cmd.Parameters.AddWithValue("@Approved", approved);
 
             cmd.ExecuteNonQuery();
+            con.Close();
+
 
         }
 

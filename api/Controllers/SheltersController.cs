@@ -41,6 +41,7 @@ namespace api.Controllers
                 
                 });
             }
+            con.Close();
             return myShelters;
         }
 
@@ -70,6 +71,8 @@ namespace api.Controllers
                 
                 // Execute the command
                 cmd.ExecuteNonQuery();
+
+                con.Close();
             }
 
         // PUT: api/Shelters/5

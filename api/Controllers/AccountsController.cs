@@ -37,6 +37,8 @@ namespace api.Controllers
                 
                 });
             }
+            con.Close();
+            
             return mySignups;
         }
 
@@ -66,6 +68,8 @@ namespace api.Controllers
                 
                 // Execute the command
                 cmd.ExecuteNonQuery();
+                con.Close();
+
             }
 
         // PUT: api/Accounts/5
