@@ -31,29 +31,31 @@ function signInDisplay() {
 }
 
 
-function handleNewPage()
-  {
-       
-        let tempId = {
-          
-            username: document.getElementById("username").value,
-            password: document.getElementById("password").value,
-        }
-        
-        myMainManagers.forEach(function(manager){
-            if(tempId.username === manager.managerUsername){
-                if(tempId.password === manager.managerPassword){
-                    localStorage.setItem('accountId', JSON.stringify(manager.managerAccountId))
-                    window.location.href = 'home.html'
+function handleNewPage() {
+    let tempId = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value,
+    };
+
+    myMainManagers.forEach(function(manager) {
+        if (tempId.username === manager.managerUsername) {
+            if (tempId.password === manager.managerPassword) {
+                // Check for specific username and password combinations
+                if (tempId.username === 'sdubberly' && tempId.password === 'Rolltide') {
+                    // Redirect to a different page for the specific user
+                    window.location.href = 'mainManager.html';
+                    localStorage.setItem('accountId', JSON.stringify(manager.managerAccountId));
+
+                } else {
+                    // Redirect to home page for other users
+                    localStorage.setItem('accountId', JSON.stringify(manager.managerAccountId));
+                    window.location.href = 'home.html';
                 }
             }
-        })
-
-
-
-       // window.location.href =j
-      
+        }
+    });
 }
+
 
 async function getMainManagers(){
     let response = await fetch(subjectUrl2);

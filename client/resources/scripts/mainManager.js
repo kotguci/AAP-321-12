@@ -54,7 +54,7 @@ async function createAccount() {
         <input type="text" id="managerAccountId" placeholder="Enter Manager Account ID" name="managerAccountId" required><br>
 
         <button type="button" class="btn btn-danger" onclick="handleNewShelter()">Submit</button>
-        <button onclick="openPopup()">Add New Manager</button>
+        <button class="btn btn-danger" onclick="openPopup()">Add New Manager</button>
     </form>
     `
     document.getElementById('addPet').innerHTML = html
