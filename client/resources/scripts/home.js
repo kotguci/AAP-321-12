@@ -1,8 +1,10 @@
 let subjectUrl2 = "http://localhost:5161/api/ManagerAccount"
 let myMainManagers = []
-subjectUrl = "http://localhost:5161/api/Accounts"
+let subjectUrl = "http://localhost:5161/api/Accounts"
 let myAccounts = []
-url = JSON.parse(localStorage.getItem('accountId'));
+url = JSON.parse(localStorage.getItem('managerId'));
+url2 = JSON.parse(localStorage.getItem('accountId'));
+
 console.log(url)
 
 
@@ -17,7 +19,7 @@ async function handleOnLoad() {
  function managerDecision() {
     // Declare and initialize boolean flags
     let managerBool = myMainManagers.some(manager => url === manager.managerAccountId);
-    let userBool = myAccounts.some(account => url === account.id);
+    let userBool = myAccounts.some(account => url2 === account.id);
 
     // Log the boolean flags
     console.log("managerBool:", managerBool);

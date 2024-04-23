@@ -94,6 +94,12 @@ async function handleNewShelter() {
     await saveShelter(shelter)
 }
 
+function handleSignOut(){
+  localStorage.removeItem('managerId')
+  window.location.href = 'home.html'
+
+}
+
 async function saveManager(manager) {
     await fetch(subjectUrl2, {
         method: "POST",
@@ -210,16 +216,16 @@ async function handleApplications() {
         headers: { 
             "Content-type": "application/json; charset=UTF-8" 
         },
-        body: 2
+        body: 1
     });
   
-    await fetch(petUrl + "/" + petId, {
+    await fetch(petsUrl + "/" + petId, {
       method: "PUT",
       headers: { 
           "Content-type": "application/json; charset=UTF-8" 
       },
   });
-  
+   handleApplications();
   
   }
   
@@ -231,7 +237,7 @@ async function handleApplications() {
         headers: { 
             "Content-type": "application/json; charset=UTF-8" 
         },
-        body: 1
+        body: 2
     });
     handleApplications();
   }

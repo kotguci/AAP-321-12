@@ -19,9 +19,7 @@ function signInDisplay() {
                 <input type="password" id="password" placeholder="Password" required>
                 <box-icon name='lock-alt' type='solid'></box-icon>
             </div>
-            <div class="remember-forgot">
-                <label><input type="checkbox">Remember Me</label>
-            </div>
+           
 
             <button class="btn btn-danger"onclick="handleNewPage()">Login</button>
         
@@ -43,8 +41,8 @@ function handleNewPage() {
                 // Check for specific username and password combinations
                 if (tempId.username === 'sdubberly' && tempId.password === 'Rolltide') {
                     // Redirect to a different page for the specific user
-                    window.location.href = 'mainManager.html';
                     localStorage.setItem('managerId', JSON.stringify(manager.managerAccountId));
+                    window.location.href = 'mainManager.html';
 
                 } else {
                     // Redirect to home page for other users
@@ -63,20 +61,6 @@ async function getMainManagers(){
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function headingBar(){
     let html =`
     <div id="button-header">
@@ -87,7 +71,6 @@ function headingBar(){
         </div>
         <div id="sign-in">
             <button class="btn btn-dark" onclick="window.location.href='home.html'"">Home</button>
-            <button class="btn btn-dark" onclick="window.location.href='signin.html'"">Sign In</button>
         </div>
     </div>`
     document.getElementById('app2').innerHTML = html;

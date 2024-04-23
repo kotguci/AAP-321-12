@@ -25,11 +25,7 @@ function createAccount(){
       <label for="password"><b>Password</b></label>
       <input type="password" id="password" placeholder="Enter Password" name="psw" required>
       
-      <label for="passwordRepeat"><b>Repeat Password</b></label>
-      <input type="password" id="passwordRepeat" placeholder="Repeat Password" name="psw-repeat" required>
-      
     
- 
   
       <p>By creating an account you agree to our <a href="terms.html" target="_blank" style="color: black">Terms & Privacy</a>.</p>
 

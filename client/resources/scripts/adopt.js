@@ -103,7 +103,7 @@ async function populateCards(sortCriterion){
                     Neutered / Spayed: ${pets.neuteredSpayed? 'Yes' : 'No'}<br>
                     Entered Shelter: ${pets.dateToShelter}
                 </p>
-                <button onclick="showPopup('${pets}')" class="btn btn-danger">More About ${pets.name}</button>
+                <button onclick="showPopup('${pets.petId}')" class="btn btn-danger">More About ${pets.name}</button>
                 </div>
                 </div>
                 </div>`
@@ -121,7 +121,7 @@ function sortPets() {
 function showPopup(petId) {
     const pet = myPets.find(p => p.petId === petId)
     const html = `
-        <strong>Type:</strong> ${pet.animalType}<br>
+        <strong>Type:</strong> ${pet.animalType} <br>
         <strong>Age:</strong> ${pet.age}<br>
         <strong>Sex:</strong> ${pet.sex}<br>
         <strong>Breed:</strong> ${pet.breed}<br>

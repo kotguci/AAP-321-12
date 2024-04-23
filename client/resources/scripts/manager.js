@@ -178,7 +178,7 @@ async function handleNewPet(){
 
 
 function handleSignOut(){
-  localStorage.removeItem('accountId')
+  localStorage.removeItem('managerId')
   window.location.href = 'home.html'
 
 }
@@ -193,8 +193,8 @@ async function handleApplications() {
   await getApplications();
   let html = '';
 
-  url = localStorage.getItem('accountId')
-  url = url.replace(/^"|"$/g, '')
+  url = JSON.parse(localStorage.getItem('managerId'));
+  
   let correctArrays = []
   let finalArrays = []
   myShelters.forEach(function (shelter){

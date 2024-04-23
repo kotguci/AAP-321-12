@@ -31,6 +31,8 @@ async function getAllShelters(){
 
 function handleSignOut(){
     localStorage.removeItem('accountId')
+    localStorage.removeItem('shelterId')
+
     window.location.href = 'home.html'
   
   }
@@ -72,7 +74,7 @@ async function populateApplications() {
 
         }
 
-        else if (app.userId == url && app.approved == 1){
+        else if (app.userId == url && app.approved == 2){
             const pet = myPets.find(pet => pet.petId === app.petId);
             const shelter = myShelters.find(shelter => pet.shetlerId === app.shetlerId)
         html += `
@@ -94,7 +96,7 @@ async function populateApplications() {
 
         }
         
-            else if (app.userId == url && app.approved == 2){
+            else if (app.userId == url && app.approved == 1){
                     const pet = myPets.find(pet => pet.petId === app.petId);
                     const shelter = myShelters.find(pet => pet.shetlerId === app.shetlerId)
             html += `
