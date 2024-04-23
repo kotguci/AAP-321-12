@@ -119,7 +119,7 @@ async function createAccount(){
 }
 
 async function handleNewPet(){
-    alert("test")
+  
     let pet = {
         petId: crypto.randomUUID(),
         animalType: document.getElementById("animalType").value,

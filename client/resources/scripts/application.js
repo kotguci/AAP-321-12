@@ -113,5 +113,5 @@ async function handleNewApplication(){
             body: JSON.stringify(application),
             headers: {"Content-type": "application/json; charset=UTF-8"}
     })
-  
+   window.location.href = 'myAccount.html'
   }

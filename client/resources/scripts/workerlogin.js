@@ -44,11 +44,11 @@ function handleNewPage() {
                 if (tempId.username === 'sdubberly' && tempId.password === 'Rolltide') {
                     // Redirect to a different page for the specific user
                     window.location.href = 'mainManager.html';
-                    localStorage.setItem('accountId', JSON.stringify(manager.managerAccountId));
+                    localStorage.setItem('managerId', JSON.stringify(manager.managerAccountId));
 
                 } else {
                     // Redirect to home page for other users
-                    localStorage.setItem('accountId', JSON.stringify(manager.managerAccountId));
+                    localStorage.setItem('managerId', JSON.stringify(manager.managerAccountId));
                     window.location.href = 'home.html';
                 }
             }

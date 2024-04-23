@@ -82,7 +82,6 @@ async function handleNewManager() {
 }
 
 async function handleNewShelter() {
-    alert("test")
     let shelter = {
         shelterId: crypto.randomUUID(),
         shelterCity: document.getElementById("shelterCity").value,

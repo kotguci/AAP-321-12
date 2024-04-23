@@ -16,7 +16,7 @@ async function getAllPets(){
 async function populateCards(sortCriterion){
     await getAllPets()
     url = JSON.parse(localStorage.getItem('shelterId'));
-    managerUrl = JSON.parse(localStorage.getItem('accountId'));
+    managerUrl = JSON.parse(localStorage.getItem('managerId'));
     console.log(url)
     let html = ''
 
