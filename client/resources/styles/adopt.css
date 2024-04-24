@@ -111,11 +111,22 @@ body {
     padding: 20px;
     max-width: 600px;
     margin: 0 auto;
-    max-height: 500px; /* Adjust the height as needed */
+    max-height: 500px; 
     overflow-y: scroll;
 }
 
 #petInfoContent{
     padding: 20px;
     height: 100%; 
+}
+
+.drop-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.drop-container label{
+    margin-right: 10px;
 }
