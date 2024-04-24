@@ -1,4 +1,7 @@
 //linkedIn XD
+function handleOnLoad(){
+    Faq();
+}
 
 function contactStetson() {
     let html = `
@@ -103,4 +106,35 @@ function hidePopup() {
     });
 }
 
+function Faq(){
 
+    var faqQuesAns = [
+        {"ques": "Is Adopt a Pet nonprofit?", "ans": `Yes, Adopt a Pet is indeed a nonprofit organization.`},
+        {"ques": "Can I volunteer at Adopt a Pet?", "ans": `Absolutely! Adopt a Pet welcomes volunteers to help with various tasks such as animal care, fundraising events, and administrative duties. Volunteering is a rewarding way to support our mission.`},
+        {"ques": "What should I do if I find a stray animal?", "ans": `If you find a stray animal, please contact Adopt a Pet or your local animal control agency. We can assist in reuniting lost pets with their owners or finding them a new home if necessary.`}
+    ];
+    var fsec = "";
+    faqQuesAns.map((f, i) => {
+        fsec += `<div id="${i}" style="border-radius: 5px; box-shadow: 0 0 5px #c5c5c5; padding: 0.5rem; cursor: pointer;">
+            <div class="ques" onclick="showAns()">
+                <p class="ques-text">${f.ques}</p>
+                <p style="filter: invert(1);">➕</p>
+            </div>
+            <div class="ans">${f.ans}</div>
+        </div>`;
+    });
+
+    document.getElementById("faqQues").innerHTML = fsec;
+    var qsec = document.getElementsByClassName("ques");
+    for (var i = 0; i < faqQuesAns.length; i++) {
+        qsec[i].addEventListener("click", function () {
+            var answer = this.nextElementSibling;
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+            } else {
+                answer.style.display = "block";
+            }
+        });
+    }
+
+}

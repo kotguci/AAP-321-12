@@ -4,12 +4,16 @@ let petUrl = "http://localhost:5161/api/Pets"
 myPets = []
 let shelterUrl = "http://localhost:5161/api/Shelters"
 myShelters = []
+let accountUrl = "http://localhost:5161/api/Accounts"
+myUsers = []
 
 async function handleOnLoad()
 {
     await getAllApplications();  // Assume this fetches your applications data
     await getAllPets();
     await getAllShelters();
+    await getAllUsers();
+    await dashboard()
     populateApplications();
 }
 async function getAllApplications(){
@@ -29,6 +33,12 @@ async function getAllShelters(){
     console.log(myShelters);
 }
 
+async function getAllUsers(){
+    let response = await fetch(accountUrl);
+    myUsers= await response.json();
+    console.log(myUsers);
+}
+
 function handleSignOut(){
     localStorage.removeItem('accountId')
     localStorage.removeItem('shelterId')
@@ -36,6 +46,54 @@ function handleSignOut(){
     window.location.href = 'home.html'
   
   }
+
+  async function dashboard(){
+    let accountId = JSON.parse(localStorage.getItem('accountId'));
+    const user = myUsers.find(user => user.id ===accountId)
+    
+    let html = `
+    <section style="background-color: white;">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" alt="avatar"
+                                class="rounded-circle img-fluid" style="width: 150px;">
+                            <h5 class="my-3">${user.firstName} ${user.lastName}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Full Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">${user.firstName} ${user.lastName}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">${user.email}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+`
+
+    document.getElementById('dash').innerHTML = html
+}
 
 async function populateApplications() {
     url = JSON.parse(localStorage.getItem('accountId'));

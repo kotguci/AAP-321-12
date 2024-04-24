@@ -107,3 +107,30 @@ body {
     display: block;
     margin: 0 auto;
 }
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.faqSection {
+    display: flex;
+    flex-direction: column;
+    width: 40rem;
+    margin: auto;
+ }
+ .ques {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 800;
+    background: crimson;
+    border-radius: 5px;
+    padding: 0.5rem
+ }
+ .ans {
+    display: none;
+    padding-top: 1rem;
+    padding-left: 10px;
+ }
