@@ -158,7 +158,7 @@ async function handleNewPet(){
   }
 
   async function populateshelterDetails(selectId = 'shelterId') {
-    url = JSON.parse(localStorage.getItem('accountId'));
+    url = JSON.parse(localStorage.getItem('managerId'));
     //await getShelters();
     var existingManagerSelect = document.getElementById(selectId);
 
@@ -253,7 +253,7 @@ async function handleDeny(applicationId, petId) {
       headers: { 
           "Content-type": "application/json; charset=UTF-8" 
       },
-      body: 2
+      body: 1
   });
 
   await fetch(petUrl + "/" + petId, {
@@ -262,6 +262,8 @@ async function handleDeny(applicationId, petId) {
         "Content-type": "application/json; charset=UTF-8" 
     },
 });
+handleApplications();
+
 
 
 }
@@ -274,7 +276,7 @@ async function handleApprove(applicationId) {
       headers: { 
           "Content-type": "application/json; charset=UTF-8" 
       },
-      body: 1
+      body: 2
   });
   handleApplications();
 }
