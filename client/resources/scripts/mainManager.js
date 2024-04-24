@@ -169,8 +169,6 @@ function populateOtherFields() {
 }
 
 async function handleApplications() {
-    
-
 
 
     let html = '';

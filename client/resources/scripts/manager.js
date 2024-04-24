@@ -18,16 +18,6 @@ async function handleOnLoad(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
 async function GetTheRestEverything(){
     await getPets()
     await getAccounts()
@@ -139,6 +129,7 @@ async function handleNewPet(){
         name: document.getElementById("name").value
     }
     await savePet(pet)
+    location.reload()
     //createTable()
     }
   
