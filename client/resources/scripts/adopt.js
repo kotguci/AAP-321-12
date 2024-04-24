@@ -35,7 +35,7 @@ async function populateCards(sortCriterion){
     }
     
     myPets.forEach(function(pets){
-        if(managerUrl != null){
+        if(managerUrl != null && pets.adopted == 0 && url == pets.shelterId){
             html += `
             <div class="petCardContainer"> 
             <div class="petCard" style="width: 18rem;">

@@ -142,8 +142,7 @@ async function populateApplications() {
             <p class="card-text">
                 Congratulations! Your application for ${pet ? pet.name : 'Unknown'} has been approved!
                 Please come to ${shelter.shelterAddress} ${shelter.shelterCity}, ${shelter.shelterState}  anytime from 9-5 to pick up your new pet!
-                Thank you for adopting with Adopt-A-Pet, and we hope to see you soon!
-                Address: ${app.address}<br>
+                Thank you for adopting with Adopt-A-Pet, and we hope to see you soon!<br>
                 Pet Name: ${pet ? pet.name : 'Unknown'}<br>
                 Pet Age: ${pet ? pet.age : 'Unknown'}<br>
                 Pet Breed: ${pet ? pet.breed : 'Unknown'}<br>
