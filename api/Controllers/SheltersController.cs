@@ -6,6 +6,7 @@ using api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using api.Controllers.ApiFunctions;
 
 
 namespace api.Controllers
@@ -21,7 +22,9 @@ namespace api.Controllers
 
         public List<Shelter> Get()
         {
-            string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
+            Database c = new Database();
+            string cs = c.getConnectionString();            
+
             MySqlConnection con = new MySqlConnection(cs);
             con.Open();
             
@@ -53,8 +56,9 @@ namespace api.Controllers
         [HttpPost]
         public void Post([FromBody] Shelter shelter)
             {
-                string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
-                
+                Database c = new Database();
+                string cs = c.getConnectionString();
+
                 using MySqlConnection con = new MySqlConnection(cs);
                 con.Open();
                 

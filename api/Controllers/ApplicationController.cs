@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using api.Models;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using api.Controllers.ApiFunctions;
+
 
 
 namespace api.Controllers
@@ -21,7 +23,9 @@ namespace api.Controllers
 
         public List<Application> Get()
         {
-            string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
+            Database c = new Database();
+            string cs = c.getConnectionString();
+
             MySqlConnection con = new MySqlConnection(cs);
             con.Open();
             
@@ -64,8 +68,9 @@ namespace api.Controllers
         [HttpPost]
         public void Post([FromBody] Application application)
             {
-                string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
-                
+                Database c = new Database();
+                string cs = c.getConnectionString();
+
                 using MySqlConnection con = new MySqlConnection(cs);
                 con.Open();
                 
@@ -102,8 +107,9 @@ namespace api.Controllers
         [HttpPut("{applicationId}")]
         public void Put(string applicationId, [FromBody] int approved)
         {
-            string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
-                
+            Database c = new Database();
+            string cs = c.getConnectionString(); 
+                           
             using MySqlConnection con = new MySqlConnection(cs);
             con.Open();
 

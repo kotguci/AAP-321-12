@@ -10,6 +10,9 @@ using MySql.Data.MySqlClient;
 using api.Models;
 using MySql.Data.MySqlClient.Authentication;
 using Org.BouncyCastle.Utilities.IO;
+using api.Controllers.ApiFunctions;
+using api.Controllers.ApiFunctions;
+
 
 namespace api.Controllers
 {
@@ -23,7 +26,9 @@ namespace api.Controllers
         public List<Pets> Get()
 
         {
-            string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
+            Database c = new Database();
+            string cs = c.getConnectionString();
+
             MySqlConnection con = new MySqlConnection(cs);
             con.Open();
             
@@ -64,8 +69,9 @@ namespace api.Controllers
         [HttpPost]
         public void Post([FromBody] Pets pet)
             {
-                string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
-                
+                Database c = new Database();
+                string cs = c.getConnectionString();
+
                 using MySqlConnection con = new MySqlConnection(cs);
                 con.Open();
                 
@@ -104,8 +110,9 @@ namespace api.Controllers
         [HttpPut("{petId}")]
         public void Put(string petId)
         {
-            string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
-                
+            Database c = new Database();
+            string cs = c.getConnectionString();
+
             using MySqlConnection con = new MySqlConnection(cs);
             con.Open();
 
@@ -124,9 +131,10 @@ namespace api.Controllers
         [HttpDelete("{petId}")]
         public void Delete(string petId, [FromBody] Pets updatedPet)
         {
-            
-            string cs = "server=dno6xji1n8fm828n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;user=exbb0kz3slfdopzr;password=faj7g9vux8h7bsbw;database=benwg2khb6mxhdhd;port=3306;password=faj7g9vux8h7bsbw";
-                
+
+            Database c = new Database();
+            string cs = c.getConnectionString();
+
             using MySqlConnection con = new MySqlConnection(cs);
             con.Open();
 
