@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using api.Models;
+using api.DataAccess;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using api.Controllers.ApiFunctions;
